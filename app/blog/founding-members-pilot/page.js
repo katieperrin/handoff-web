@@ -115,7 +115,7 @@ export default function FoundingMembersPilotPost() {
           <h2 className="text-2xl font-bold text-[#2D2040] pt-4">Why Only 10?</h2>
           <p>Because we want to be obsessive about this first experience.</p>
           <p>
-            Every bag authenticated. Every shipment tracked. Every question answered personally. We&apos;d rather
+            Every question answered personally. We&apos;d rather
             serve 10 people exceptionally than 1,000 people adequately. The things we learn from this cohort will
             define how we scale — and we refuse to rush that.
           </p>
