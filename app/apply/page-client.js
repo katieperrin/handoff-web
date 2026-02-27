@@ -2,25 +2,47 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { supabase } from '@/lib/supabase';
+import { brands } from '@/lib/brands';
 
 export default function ApplyPage() {
-  const [form, setForm] = useState({ name: '', email: '', interest: '', note: '' });
+  const [form, setForm] = useState({ name: '', email: '', interest: '', note: '', bagBrand: '', bagStyle: '', bagCondition: '' });
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
 
   function set(field, value) {
-    setForm((f) => ({ ...f, [field]: value }));
+    setForm((f) => {
+      const updated = { ...f, [field]: value };
+      // Clear bag fields when switching away from 'both'
+      if (field === 'interest' && value !== 'both') {
+        updated.bagBrand = '';
+        updated.bagStyle = '';
+        updated.bagCondition = '';
+      }
+      return updated;
+    });
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
     if (!form.interest) { setError('Please select your interest.'); return; }
+    if (form.interest === 'both' && (!form.bagBrand || !form.bagStyle || !form.bagCondition)) {
+      setError('Please fill in your bag details.'); return;
+    }
     setError('');
     setSubmitting(true);
+    const isBoth = form.interest === 'both';
     const { error: dbError } = await supabase
       .from('pilot_applications')
-      .insert({ name: form.name.trim(), email: form.email.trim().toLowerCase(), interest: form.interest, note: form.note.trim() || null });
+      .insert({
+        name: form.name.trim(),
+        email: form.email.trim().toLowerCase(),
+        interest: form.interest,
+        note: form.note.trim() || null,
+        bag_brand: isBoth ? form.bagBrand : null,
+        bag_style: isBoth ? form.bagStyle.trim() : null,
+        bag_condition: isBoth ? form.bagCondition : null,
+      });
     setSubmitting(false);
     if (dbError) {
       setError('Something went wrong. Please try again.');
@@ -98,8 +120,7 @@ export default function ApplyPage() {
                 <div className="space-y-2.5">
                   {[
                     { value: 'renter', label: 'Renting bags', desc: 'Access the collection and carry luxury bags monthly' },
-                    { value: 'owner', label: 'Contributing my bags', desc: 'Earn credits by adding my bags to the rental pool' },
-                    { value: 'both', label: 'Both', desc: 'I want to rent and contribute' },
+                    { value: 'both', label: 'Renting & contributing my bags', desc: 'Rent from the collection and earn credits by adding your bags to the pool' },
                   ].map(({ value, label, desc }) => (
                     <label
                       key={value}
@@ -125,6 +146,51 @@ export default function ApplyPage() {
                   ))}
                 </div>
               </div>
+
+              {form.interest === 'both' && (
+                <div className="space-y-4 bg-purple-50 rounded-xl p-5 border border-purple-100">
+                  <p className="text-sm font-semibold text-[#7B5EA7]">Tell us about a bag you'd contribute</p>
+                  <div>
+                    <label className="block text-xs font-semibold text-[#2D2040] mb-1.5">Brand</label>
+                    <select
+                      required
+                      value={form.bagBrand}
+                      onChange={(e) => set('bagBrand', e.target.value)}
+                      className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#7B5EA7] bg-white"
+                    >
+                      <option value="">Select a brand</option>
+                      {brands.map((b) => (
+                        <option key={b.slug} value={b.name}>{b.name}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-xs font-semibold text-[#2D2040] mb-1.5">Style</label>
+                    <input
+                      type="text"
+                      required
+                      value={form.bagStyle}
+                      onChange={(e) => set('bagStyle', e.target.value)}
+                      placeholder="e.g. Classic Flap, Neverfull MM"
+                      className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#7B5EA7] bg-white"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-semibold text-[#2D2040] mb-1.5">Condition</label>
+                    <select
+                      required
+                      value={form.bagCondition}
+                      onChange={(e) => set('bagCondition', e.target.value)}
+                      className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#7B5EA7] bg-white"
+                    >
+                      <option value="">Select condition</option>
+                      <option value="excellent">Excellent</option>
+                      <option value="good">Good</option>
+                      <option value="fair">Fair</option>
+                    </select>
+                  </div>
+                </div>
+              )}
 
               <div>
                 <label className="block text-sm font-semibold text-[#2D2040] mb-1.5">
