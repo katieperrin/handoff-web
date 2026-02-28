@@ -53,6 +53,9 @@ export const metadata = {
   alternates: {
     canonical: 'https://thehandoffs.com',
   },
+  other: {
+    'p:domain_verify': 'ede580ab1c4925421969146a7694e754',
+  },
 };
 
 export default function RootLayout({ children }) {
