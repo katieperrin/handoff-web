@@ -1,6 +1,6 @@
 'use client';
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { Suspense, useState, useEffect } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements, PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { supabase } from '@/lib/supabase';
@@ -81,8 +81,9 @@ function CheckoutForm({ onSuccess }) {
   );
 }
 
-export default function SubscribePage() {
+function SubscribePageInner() {
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   // step: 'plans' | 'address' | 'payment'
   const [step, setStep] = useState('plans');
@@ -91,6 +92,10 @@ export default function SubscribePage() {
   const [loadingPlan, setLoadingPlan] = useState(null);
   const [planError, setPlanError] = useState(null);
 
+  // Referral code
+  const [referralCode, setReferralCode] = useState('');
+  const [showReferral, setShowReferral] = useState(false);
+
   // Address form state
   const [addr, setAddr] = useState({
     shipping_name: '', shipping_street1: '', shipping_street2: '',
@@ -98,6 +103,16 @@ export default function SubscribePage() {
   });
   const [savingAddr, setSavingAddr] = useState(false);
   const [addrError, setAddrError] = useState(null);
+
+  // Pre-fill referral code from URL param or localStorage
+  useEffect(() => {
+    const ref = searchParams.get('ref') || localStorage.getItem('referral_code') || '';
+    if (ref) {
+      setReferralCode(ref);
+      setShowReferral(true);
+      localStorage.removeItem('referral_code');
+    }
+  }, [searchParams]);
 
   // Redirect to /verify-id if not verified
   useEffect(() => {
@@ -119,7 +134,7 @@ export default function SubscribePage() {
     setLoadingPlan(tier);
     setPlanError(null);
     const { data, error } = await supabase.functions.invoke('create-subscription', {
-      body: { tier, action: 'subscribe' },
+      body: { tier, action: 'subscribe', ...(referralCode.trim() ? { referral_code: referralCode.trim() } : {}) },
     });
     if (error || !data?.clientSecret) {
       setPlanError(error?.message || 'Failed to start subscription. Please try again.');
@@ -218,6 +233,31 @@ export default function SubscribePage() {
                 </div>
               ))}
             </div>
+            {/* Referral code */}
+            <div className="max-w-md mx-auto">
+              {!showReferral ? (
+                <button
+                  onClick={() => setShowReferral(true)}
+                  className="text-sm text-[#7B5EA7] font-medium hover:underline"
+                >
+                  Have a referral code?
+                </button>
+              ) : (
+                <div className="flex items-center gap-3">
+                  <input
+                    type="text"
+                    value={referralCode}
+                    onChange={(e) => setReferralCode(e.target.value.toUpperCase())}
+                    placeholder="e.g. SARAH30"
+                    maxLength={20}
+                    className="flex-1 border border-gray-200 rounded-xl px-4 py-2.5 text-sm uppercase tracking-wide focus:outline-none focus:ring-2 focus:ring-purple-300"
+                  />
+                  {referralCode && (
+                    <span className="text-xs text-green-600 font-medium shrink-0">$30 off first month!</span>
+                  )}
+                </div>
+              )}
+            </div>
             {planError && <p className="text-center text-sm text-red-500">{planError}</p>}
           </>
         )}
@@ -303,5 +343,13 @@ export default function SubscribePage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function SubscribePage() {
+  return (
+    <Suspense>
+      <SubscribePageInner />
+    </Suspense>
   );
 }

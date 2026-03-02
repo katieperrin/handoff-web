@@ -1,6 +1,6 @@
 'use client';
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { Suspense, useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { supabase } from '@/lib/supabase';
 
@@ -26,8 +26,9 @@ function formatPhone(input) {
   return null;
 }
 
-export default function SignupPage() {
+function SignupPageInner() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [step, setStep] = useState('signup'); // 'signup' | 'verify'
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -70,7 +71,8 @@ export default function SignupPage() {
       setError(error.message);
       setLoading(false);
     } else {
-      router.push('/verify-id');
+      const ref = searchParams.get('ref');
+      router.push(ref ? `/verify-id?ref=${encodeURIComponent(ref)}` : '/verify-id');
     }
   };
 
@@ -213,5 +215,13 @@ export default function SignupPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function SignupPage() {
+  return (
+    <Suspense>
+      <SignupPageInner />
+    </Suspense>
   );
 }

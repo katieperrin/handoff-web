@@ -1,14 +1,20 @@
 'use client';
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { Suspense, useEffect, useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { supabase } from '@/lib/supabase';
 
-export default function VerifyIdPage() {
+function VerifyIdPageInner() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [verificationUrl, setVerificationUrl] = useState(null);
   const [status, setStatus] = useState(null); // 'pending' | 'polling' | 'verified' | 'requires_input' | 'failed'
+
+  const goToSubscribe = () => {
+    const ref = searchParams.get('ref');
+    router.push(ref ? `/subscribe?ref=${encodeURIComponent(ref)}` : '/subscribe');
+  };
 
   useEffect(() => {
     checkStatusOrCreate();
@@ -29,7 +35,7 @@ export default function VerifyIdPage() {
       .maybeSingle();
 
     if (profile?.id_verification_status === 'verified') {
-      router.push('/subscribe');
+      goToSubscribe();
       return;
     }
 
@@ -59,7 +65,7 @@ export default function VerifyIdPage() {
     }
 
     if (data.status === 'already_verified') {
-      router.push('/subscribe');
+      goToSubscribe();
       return;
     }
 
@@ -81,7 +87,7 @@ export default function VerifyIdPage() {
         .maybeSingle();
 
       if (profile?.id_verification_status === 'verified') {
-        router.push('/subscribe');
+        goToSubscribe();
         return;
       }
 
@@ -132,7 +138,7 @@ export default function VerifyIdPage() {
     }
 
     if (data.status === 'already_verified') {
-      router.push('/subscribe');
+      goToSubscribe();
       return;
     }
 
@@ -233,5 +239,13 @@ export default function VerifyIdPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function VerifyIdPage() {
+  return (
+    <Suspense>
+      <VerifyIdPageInner />
+    </Suspense>
   );
 }

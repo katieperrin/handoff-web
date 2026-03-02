@@ -28,6 +28,8 @@ export default function ProfilePage() {
   });
   const [savingAddr, setSavingAddr] = useState(false);
   const [addrError, setAddrError] = useState(null);
+  const [referralCount, setReferralCount] = useState(0);
+  const [copied, setCopied] = useState(null); // 'code' | 'link' | null
 
   useEffect(() => {
     async function load() {
@@ -36,7 +38,7 @@ export default function ProfilePage() {
       if (user) {
         const { data } = await supabase
           .from('users')
-          .select('subscription_tier, credit_balance_cents, monthly_credit_cents, shipping_name, shipping_street1, shipping_street2, shipping_city, shipping_state, shipping_zip, shipping_phone')
+          .select('subscription_tier, credit_balance_cents, monthly_credit_cents, referral_code, shipping_name, shipping_street1, shipping_street2, shipping_city, shipping_state, shipping_zip, shipping_phone')
           .eq('id', user.id)
           .single();
         setProfile(data);
@@ -51,6 +53,13 @@ export default function ProfilePage() {
             shipping_phone:   data.shipping_phone   ?? '',
           });
         }
+        // Fetch referral count
+        const { count } = await supabase
+          .from('referrals')
+          .select('id', { count: 'exact', head: true })
+          .eq('referrer_id', user.id)
+          .eq('status', 'completed');
+        setReferralCount(count ?? 0);
       }
       setLoading(false);
     }
@@ -262,6 +271,56 @@ export default function ProfilePage() {
               <span className="text-gray-300 text-lg">›</span>
             </div>
           </Link>
+
+          {/* Referral Program */}
+          {profile?.referral_code && tier && (
+            <div className="bg-white rounded-2xl border border-gray-100 p-5">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="text-lg">🎁</span>
+                <p className="text-sm font-bold text-[#2D2040]">Share & Earn $30</p>
+              </div>
+              <p className="text-xs text-gray-400 mb-4">
+                Invite a friend — you both get $30 when they complete their first month.
+              </p>
+              <div className="space-y-2">
+                <div className="flex items-center gap-2">
+                  <div className="flex-1 bg-[#F8F6FB] rounded-xl px-3 py-2.5 text-sm font-mono font-semibold text-[#2D2040] tracking-wide">
+                    {profile.referral_code}
+                  </div>
+                  <button
+                    onClick={() => {
+                      navigator.clipboard.writeText(profile.referral_code);
+                      setCopied('code');
+                      setTimeout(() => setCopied(null), 2000);
+                    }}
+                    className="shrink-0 text-xs font-semibold text-[#7B5EA7] bg-purple-50 px-3 py-2.5 rounded-xl hover:bg-purple-100 transition-colors"
+                  >
+                    {copied === 'code' ? 'Copied!' : 'Copy'}
+                  </button>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="flex-1 bg-[#F8F6FB] rounded-xl px-3 py-2.5 text-xs text-gray-500 truncate">
+                    thehandoffs.com/ref/{profile.referral_code}
+                  </div>
+                  <button
+                    onClick={() => {
+                      navigator.clipboard.writeText(`https://thehandoffs.com/ref/${profile.referral_code}`);
+                      setCopied('link');
+                      setTimeout(() => setCopied(null), 2000);
+                    }}
+                    className="shrink-0 text-xs font-semibold text-[#7B5EA7] bg-purple-50 px-3 py-2.5 rounded-xl hover:bg-purple-100 transition-colors"
+                  >
+                    {copied === 'link' ? 'Copied!' : 'Copy Link'}
+                  </button>
+                </div>
+              </div>
+              {referralCount > 0 && (
+                <p className="text-xs text-gray-400 mt-3">
+                  {referralCount} successful referral{referralCount !== 1 ? 's' : ''}
+                </p>
+              )}
+            </div>
+          )}
 
           {/* Request a bag */}
           <button
