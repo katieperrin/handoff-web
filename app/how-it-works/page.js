@@ -421,6 +421,9 @@ export default function HowItWorksPage() {
             <Link href="/faq" className="text-[#7B5EA7] hover:underline font-semibold text-sm">
               FAQ →
             </Link>
+            <Link href="/sell-your-bag" className="text-[#7B5EA7] hover:underline font-semibold text-sm">
+              Sell Your Bag →
+            </Link>
             <Link href="/compare" className="text-[#7B5EA7] hover:underline font-semibold text-sm">
               Compare Services →
             </Link>
