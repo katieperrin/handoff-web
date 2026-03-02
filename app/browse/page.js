@@ -6,6 +6,12 @@ import { supabase } from '@/lib/supabase';
 
 const CREDIT_CAP_CENTS = 2500;
 
+const SHIPPING_TIERS = [
+  { value: 'standard', label: 'Standard', desc: '3–5 business days', price: 0 },
+  { value: 'priority', label: 'Priority', desc: '2–3 business days', price: 1500 },
+  { value: 'express', label: 'Express', desc: '1–2 business days', price: 3000 },
+];
+
 export default function BrowsePage() {
   const [bags, setBags] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -18,6 +24,7 @@ export default function BrowsePage() {
   const [subscriptionTier, setSubscriptionTier] = useState(null);
   const [activeRentalCount, setActiveRentalCount] = useState(0);
   const [applyCredits, setApplyCredits] = useState(false);
+  const [shippingTier, setShippingTier] = useState('standard');
   const [requesting, setRequesting] = useState(false);
   const [requestError, setRequestError] = useState(null);
   const [success, setSuccess] = useState(false);
@@ -86,15 +93,31 @@ export default function BrowsePage() {
     const { data: { user } } = await supabase.auth.getUser();
 
     try {
+      // If paid shipping tier, charge via Stripe first
+      if (shippingTier !== 'standard') {
+        const { data: chargeData, error: chargeErr } = await supabase.functions.invoke('charge-shipping', {
+          body: { tier: shippingTier },
+        });
+        if (chargeErr) throw new Error(chargeErr.message);
+        if (chargeData?.error) throw new Error(chargeData.error);
+
+        // Confirm the payment using Stripe.js
+        const { loadStripe } = await import('@stripe/stripe-js');
+        const stripeClient = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
+        const { error: payErr } = await stripeClient.confirmCardPayment(chargeData.clientSecret);
+        if (payErr) throw new Error(payErr.message);
+      }
+
       if (applyCredits && creditBalance > 0) {
         const { error } = await supabase.functions.invoke('apply-credits', {
-          body: { bag_id: selectedBag.id, apply_credits: true },
+          body: { bag_id: selectedBag.id, apply_credits: true, shipping_tier: shippingTier },
         });
         if (error) throw new Error(error.message);
       } else {
         const { error } = await supabase.rpc('rent_bag', {
           p_bag_id: selectedBag.id,
           p_renter_id: user.id,
+          p_shipping_tier: shippingTier,
         });
         if (error) throw new Error(error.message);
       }
@@ -103,6 +126,7 @@ export default function BrowsePage() {
         setSuccess(false);
         setSelectedBag(null);
         setApplyCredits(false);
+        setShippingTier('standard');
         fetchBags();
       }, 2500);
     } catch (err) {
@@ -382,6 +406,41 @@ export default function BrowsePage() {
                   </div>
                 ) : (
                   <>
+                    {/* Shipping speed */}
+                    <div className="mb-4">
+                      <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2">Shipping Speed</p>
+                      <div className="space-y-2">
+                        {SHIPPING_TIERS.map((tier) => (
+                          <label
+                            key={tier.value}
+                            className={`flex items-center justify-between p-3 rounded-xl border cursor-pointer transition-colors ${
+                              shippingTier === tier.value
+                                ? 'border-[#7B5EA7] bg-purple-50'
+                                : 'border-gray-200 bg-white hover:border-purple-200'
+                            }`}
+                          >
+                            <div className="flex items-center gap-3">
+                              <input
+                                type="radio"
+                                name="shippingTier"
+                                value={tier.value}
+                                checked={shippingTier === tier.value}
+                                onChange={() => setShippingTier(tier.value)}
+                                className="accent-[#7B5EA7]"
+                              />
+                              <div>
+                                <p className="text-sm font-semibold text-[#2D2040]">{tier.label}</p>
+                                <p className="text-xs text-gray-400">{tier.desc}</p>
+                              </div>
+                            </div>
+                            <span className="text-sm font-semibold text-[#2D2040]">
+                              {tier.price === 0 ? 'Free' : `$${(tier.price / 100).toFixed(0)}`}
+                            </span>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+
                     {requestError && (
                       <p className="text-sm text-red-500 bg-red-50 rounded-xl px-4 py-3 mb-4">{requestError}</p>
                     )}
@@ -390,7 +449,7 @@ export default function BrowsePage() {
                       disabled={requesting}
                       className="w-full bg-[#7B5EA7] hover:bg-[#6a4f93] disabled:opacity-60 text-white font-semibold py-3 rounded-xl transition-colors"
                     >
-                      {requesting ? 'Confirming…' : 'Rent Now'}
+                      {requesting ? 'Confirming…' : shippingTier === 'standard' ? 'Rent Now' : `Rent Now — $${(SHIPPING_TIERS.find(t => t.value === shippingTier)?.price / 100).toFixed(0)} shipping`}
                     </button>
                   </>
                 )}
