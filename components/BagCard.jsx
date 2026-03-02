@@ -29,6 +29,13 @@ export default function BagCard({ bag, onRequest, wishlisted, onToggleWishlist }
         </div>
       )}
 
+      {/* For Sale badge */}
+      {bag.for_sale && bag.sale_price_cents > 0 && (
+        <span className="absolute top-3 left-3 bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow">
+          For Sale &middot; ${(bag.sale_price_cents / 100).toLocaleString()}
+        </span>
+      )}
+
       {/* Heart button */}
       {onToggleWishlist && (
         <button
