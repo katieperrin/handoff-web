@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements, PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js';
@@ -98,6 +98,22 @@ export default function SubscribePage() {
   });
   const [savingAddr, setSavingAddr] = useState(false);
   const [addrError, setAddrError] = useState(null);
+
+  // Redirect to /verify-id if not verified
+  useEffect(() => {
+    (async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) { router.push('/login'); return; }
+      const { data: profile } = await supabase
+        .from('users')
+        .select('id_verification_status')
+        .eq('id', user.id)
+        .maybeSingle();
+      if (profile && profile.id_verification_status !== 'verified') {
+        router.push('/verify-id');
+      }
+    })();
+  }, [router]);
 
   const handleSelectPlan = async (tier) => {
     setLoadingPlan(tier);
