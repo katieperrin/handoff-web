@@ -97,7 +97,7 @@ const DETAILED_COMPARISON = [
     details: [
       {
         name: 'The Handoffs',
-        info: 'Two-sided marketplace where renters borrow, owners contribute, and bags can be purchased through Try Before You Buy. Members earn credits; non-members earn cash per rental.',
+        info: 'Two-sided marketplace where renters borrow, owners contribute, and bags can be purchased through Try Before You Buy. Members earn credits; non-members earn $50/month cash while their bag is rented.',
       },
       {
         name: 'Vivrelle & Others',
@@ -110,7 +110,7 @@ const DETAILED_COMPARISON = [
     details: [
       {
         name: 'The Handoffs',
-        info: 'Contribute bags for free authentication. Members earn $60/month in credits. Non-members earn $50 cash per rental. Anyone can list for sale — renters try it first and buy at 90% payout to the seller.',
+        info: 'Contribute bags for free authentication. Members earn $60/month in credits. Non-members earn $50/month cash while their bag is rented. Anyone can list for sale — renters try it first and buy at 90% payout to the seller.',
       },
       {
         name: 'Vivrelle & Others',

@@ -58,7 +58,7 @@ const FAQ_CATEGORIES = [
       },
       {
         q: 'How much can I earn from my luxury bag?',
-        a: 'It depends on your track. Active members earn $60/month in credits per bag ($720/year). Non-members (consigners) earn $50 cash each time their bag is rented, paid directly to your bank via Stripe. You can also list for sale — if a renter buys your bag through Try Before You Buy, you receive 90% of the sale price.',
+        a: 'It depends on your track. Active members earn $60/month in credits per bag ($720/year). Non-members (consigners) earn $50/month cash while their bag is rented, prorated and paid directly to your bank via Stripe. You can also list for sale — if a renter buys your bag through Try Before You Buy, you receive 90% of the sale price.',
       },
       {
         q: 'Can I list my bag for sale?',
@@ -99,7 +99,7 @@ const FAQ_CATEGORIES = [
       },
       {
         q: 'Do I need to be a member to contribute bags?',
-        a: 'No! Anyone can contribute bags. Members earn $60/month in credits per bag. Non-members earn $50 cash per completed rental via Stripe. Both members and non-members can list their bags for sale.',
+        a: 'No! Anyone can contribute bags. Members earn $60/month in credits per bag. Non-members earn $50/month cash while their bag is rented via Stripe. Both members and non-members can list their bags for sale.',
       },
       {
         q: 'How do I use my earnings as credits?',

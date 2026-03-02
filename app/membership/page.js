@@ -110,7 +110,7 @@ const EARNING_EXPLAINED = [
   },
   {
     title: 'Consigner Earning Track',
-    description: 'Not a member? No problem. Earn $50 cash each time your bag is rented. Payouts go directly to your bank via Stripe Connect.',
+    description: 'Not a member? No problem. Earn $50/month cash while your bag is rented, prorated to the day. Payouts go directly to your bank via Stripe Connect.',
   },
   {
     title: 'Try Before You Buy',
@@ -137,7 +137,7 @@ const FAQ_ITEMS = [
   },
   {
     q: 'Do I have to be a member to contribute bags?',
-    a: 'No! Anyone can contribute. Members earn $60/month in credits per bag. Non-members earn $50 cash per rental via Stripe. Both can also list bags for sale through Try Before You Buy.',
+    a: 'No! Anyone can contribute. Members earn $60/month in credits per bag. Non-members earn $50/month cash while their bag is rented via Stripe. Both can also list bags for sale through Try Before You Buy.',
   },
   {
     q: 'How do I start contributing bags?',
@@ -319,7 +319,7 @@ export default function MembershipPage() {
             <div className="bg-white/5 border border-white/10 rounded-2xl p-10 text-center">
               <p className="text-[#B0A8C8] text-sm mb-2">Non-member consigner:</p>
               <p className="text-xl font-bold text-white">
-                Earn <span className="text-green-400">$50 cash</span> per rental + <span className="text-green-400">90% payout</span> on sales
+                Earn <span className="text-green-400">$50/month cash</span> while rented + <span className="text-green-400">90% payout</span> on sales
               </p>
             </div>
           </div>

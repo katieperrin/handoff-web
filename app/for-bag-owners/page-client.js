@@ -3,10 +3,10 @@ import { useState } from 'react';
 import Link from 'next/link';
 
 const EARNING_EXAMPLES = [
-  { bag: 'Chanel Classic Flap', brand: 'Chanel', memberEarning: '$720/year in credits', consignerEarning: '$50 cash per rental', frequency: 'Members: $60/mo credits · Consigners: $50/rental cash' },
-  { bag: 'Louis Vuitton Neverfull', brand: 'Louis Vuitton', memberEarning: '$720/year in credits', consignerEarning: '$50 cash per rental', frequency: 'Members: $60/mo credits · Consigners: $50/rental cash' },
-  { bag: 'Gucci Marmont', brand: 'Gucci', memberEarning: '$720/year in credits', consignerEarning: '$50 cash per rental', frequency: 'Members: $60/mo credits · Consigners: $50/rental cash' },
-  { bag: 'Prada Saffiano Bag', brand: 'Prada', memberEarning: '$720/year in credits', consignerEarning: '$50 cash per rental', frequency: 'Members: $60/mo credits · Consigners: $50/rental cash' },
+  { bag: 'Chanel Classic Flap', brand: 'Chanel', memberEarning: '$720/year in credits', consignerEarning: '$50/month cash while rented', frequency: 'Members: $60/mo credits · Consigners: $50/mo cash' },
+  { bag: 'Louis Vuitton Neverfull', brand: 'Louis Vuitton', memberEarning: '$720/year in credits', consignerEarning: '$50/month cash while rented', frequency: 'Members: $60/mo credits · Consigners: $50/mo cash' },
+  { bag: 'Gucci Marmont', brand: 'Gucci', memberEarning: '$720/year in credits', consignerEarning: '$50/month cash while rented', frequency: 'Members: $60/mo credits · Consigners: $50/mo cash' },
+  { bag: 'Prada Saffiano Bag', brand: 'Prada', memberEarning: '$720/year in credits', consignerEarning: '$50/month cash while rented', frequency: 'Members: $60/mo credits · Consigners: $50/mo cash' },
 ];
 
 const BENEFITS = [
@@ -28,7 +28,7 @@ const BENEFITS = [
   },
   {
     title: 'Two Ways to Earn',
-    description: 'Members earn $60/month in credits per bag. Not a member? Earn $50 cash each time your bag is rented — paid directly to your bank via Stripe.',
+    description: 'Members earn $60/month in credits per bag. Not a member? Earn $50/month cash while your bag is rented — paid directly to your bank via Stripe.',
   },
   {
     title: 'Try Before You Buy',
@@ -55,7 +55,7 @@ const OWNER_STEPS = [
   {
     step: '04',
     title: 'You Earn',
-    description: 'Members earn $60/month in credits. Non-members earn $50 cash per rental via Stripe. If a renter buys your bag, you receive 90% of the sale price.',
+    description: 'Members earn $60/month in credits. Non-members earn $50/month cash while their bag is rented via Stripe. If a renter buys your bag, you receive 90% of the sale price.',
   },
 ];
 
@@ -65,7 +65,7 @@ const FAQ_ITEMS = [
     items: [
       {
         q: 'How much can I earn from my luxury bag?',
-        a: 'It depends on your track. Active members earn $60/month in credits per bag ($720/year). Non-members (consigners) earn $50 cash each time their bag is rented, paid directly to your bank account via Stripe. You can also list your bag for sale — if a renter buys it, you receive 90% of the sale price.',
+        a: 'It depends on your track. Active members earn $60/month in credits per bag ($720/year). Non-members (consigners) earn $50/month cash while their bag is rented, prorated and paid directly to your bank account via Stripe. You can also list your bag for sale — if a renter buys it, you receive 90% of the sale price.',
       },
       {
         q: 'How do earnings work?',
@@ -94,7 +94,7 @@ const FAQ_ITEMS = [
       },
       {
         q: 'Do I need to be a member to contribute?',
-        a: 'No! Anyone can contribute bags. Members earn $60/month in credits per bag. Non-members earn $50 cash per rental — you just need to connect a bank account via Stripe for payouts.',
+        a: 'No! Anyone can contribute bags. Members earn $60/month in credits per bag. Non-members earn $50/month cash while their bag is rented — you just need to connect a bank account via Stripe for payouts.',
       },
       {
         q: 'How long does authentication take?',
@@ -182,7 +182,7 @@ export function BagOwnersPageContent() {
             Your Closet Is an Untapped Asset
           </h1>
           <p className="text-lg text-gray-500 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Designer bags you own but rarely use are just sitting there. With The Handoffs, your luxury bags work for you. Members earn $60/month in credits per bag. Not a member? Earn $50 cash each time your bag is rented. You can also list for sale — renters try it first and buy it outright.
+            Designer bags you own but rarely use are just sitting there. With The Handoffs, your luxury bags work for you. Members earn $60/month in credits per bag. Not a member? Earn $50/month cash while your bag is rented. You can also list for sale — renters try it first and buy it outright.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link
