@@ -30,7 +30,7 @@ const VALUES = [
   {
     label: 'Earn',
     headline: 'Your closet is an untapped asset.',
-    body: "The average luxury bag sits unused for most of its life. If you own one, The Handoffs puts it to work. Members earn $60/month in credits per bag. Not a member? Earn $50/month cash while your bag is rented. You can also list it for sale — renters can try it first and buy if they love it.",
+    body: "The average luxury bag sits unused for most of its life. If you own one, The Handoffs puts it to work. Members earn $60/month in credits while their bag is in the pool. Not a member? Earn $50/month cash while your bag is actively rented. You can also list it for sale — renters can try it first and buy if they love it.",
   },
   {
     label: 'Sustain',
@@ -193,8 +193,8 @@ export default function HomePage() {
             </h2>
             <p className="text-gray-500 leading-relaxed mb-8">
               Contribute your bag to The Handoffs pool and earn while it's out in the world.
-              Members earn <strong className="text-[#2D2040]">$60/month in credits</strong> per bag.
-              Not a member? Earn <strong className="text-[#2D2040]">$50/month cash</strong> while your bag is rented — paid via Stripe.
+              Members earn <strong className="text-[#2D2040]">$60/month in credits</strong> while your bag is in the pool.
+              Not a member? Earn <strong className="text-[#2D2040]">$50/month cash</strong> while your bag is actively rented — paid via Stripe.
               You can also list your bag for sale with a transparent price. Renters can try it first and buy it outright.
             </p>
             <div className="space-y-3 mb-8">
@@ -228,8 +228,8 @@ export default function HomePage() {
           </div>
           <div className="grid grid-cols-2 gap-4">
             {[
-              { stat: '$60', label: 'credits/month for members' },
-              { stat: '$50', label: 'cash/month for consigners' },
+              { stat: '$60', label: 'credits/month while in pool' },
+              { stat: '$50', label: 'cash/month while rented' },
               { stat: '90%', label: 'payout on Try Before You Buy sales' },
               { stat: '100%', label: 'control — recall anytime' },
             ].map(({ stat, label }) => (

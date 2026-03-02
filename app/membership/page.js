@@ -106,11 +106,11 @@ const EARNING_EXPLAINED = [
   },
   {
     title: 'Member Earning Track',
-    description: 'Active members earn $60/month in credits per bag ($720/year). Credits offset your membership fee directly. 1 bag earns $60/month — Standard drops to $89.',
+    description: 'Active members earn $60/month in credits while their bag is in the pool ($720/year if available all year). Credits offset your membership fee directly. 1 bag earns $60/month — Standard drops to $89.',
   },
   {
     title: 'Consigner Earning Track',
-    description: 'Not a member? No problem. Earn $50/month cash while your bag is rented, prorated to the day. Payouts go directly to your bank via Stripe Connect.',
+    description: 'Not a member? No problem. Earn $50/month cash while your bag is actively rented, prorated to the day. Payouts go directly to your bank via Stripe Connect.',
   },
   {
     title: 'Try Before You Buy',
@@ -137,7 +137,7 @@ const FAQ_ITEMS = [
   },
   {
     q: 'Do I have to be a member to contribute bags?',
-    a: 'No! Anyone can contribute. Members earn $60/month in credits per bag. Non-members earn $50/month cash while their bag is rented via Stripe. Both can also list bags for sale through Try Before You Buy.',
+    a: 'No! Anyone can contribute. Members earn $60/month in credits while their bag is in the pool. Non-members earn $50/month cash while their bag is actively rented via Stripe. Both can also list bags for sale through Try Before You Buy.',
   },
   {
     q: 'How do I start contributing bags?',
