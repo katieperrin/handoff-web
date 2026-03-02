@@ -254,6 +254,15 @@ export default function ProfilePage() {
             </div>
           </Link>
 
+          {/* Payment Methods */}
+          <Link href="/profile/payment-methods"
+            className="block bg-white rounded-2xl border border-gray-100 p-5 hover:border-purple-200 transition-colors">
+            <div className="flex items-center justify-between">
+              <p className="text-sm font-semibold text-[#2D2040]">Payment Methods</p>
+              <span className="text-gray-300 text-lg">›</span>
+            </div>
+          </Link>
+
           {/* Request a bag */}
           <button
             onClick={() => setSuggestOpen(true)}
