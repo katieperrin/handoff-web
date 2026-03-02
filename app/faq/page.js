@@ -40,6 +40,10 @@ const FAQ_CATEGORIES = [
         a: 'There\'s no time limit. Keep a bag for a day, a week, a month, or longer. When you\'re ready for something different, return it and request another one. No rush, no penalties.',
       },
       {
+        q: 'Can I buy a bag I\'m renting?',
+        a: 'Yes! Some bags in our collection are listed for sale by their owners. If you\'re renting one, you\'ll see a "Buy This Bag" option with a transparent price. Purchase it and it\'s yours to keep — no return needed. This is our Try Before You Buy program.',
+      },
+      {
         q: 'What if a bag gets damaged?',
         a: 'If a bag gets damaged during your rental, we\'ll assess it and file a claim. You\'re not liable for accidental damage. However, you are responsible for damage from misuse (intentional damage, neglect).',
       },
@@ -50,11 +54,19 @@ const FAQ_CATEGORIES = [
     questions: [
       {
         q: 'How do I rent out my designer bag?',
-        a: 'Submit photos and details of your bag through our contribute portal. We\'ll schedule a white-glove authentication and intake. If approved, your bag joins our rental pool. We handle everything else — shipping, insurance, returns, and member communication.',
+        a: 'Submit photos and details of your bag through our contribute portal. We\'ll schedule a white-glove authentication and intake. If approved, your bag joins our rental pool. We handle everything else — shipping, insurance, returns, and member communication. You don\'t need to be a member to contribute.',
       },
       {
         q: 'How much can I earn from my luxury bag?',
-        a: 'You earn $60 in credits per 30-day cycle your bag is available to rent. That\'s $720/year per bag.',
+        a: 'It depends on your track. Active members earn $60/month in credits per bag ($720/year). Non-members (consigners) earn $50 cash each time their bag is rented, paid directly to your bank via Stripe. You can also list for sale — if a renter buys your bag through Try Before You Buy, you receive 90% of the sale price.',
+      },
+      {
+        q: 'Can I list my bag for sale?',
+        a: 'Yes! When you submit your bag, you can toggle "List for Sale" and set your asking price. Renters see the price while browsing and can purchase the bag during their rental through our Try Before You Buy program. You receive 90% of the sale price, and we handle the transaction.',
+      },
+      {
+        q: 'How does Try Before You Buy work?',
+        a: 'Any bag listed for sale shows its price to renters. When a renter has the bag, they can choose to buy it instead of returning it. They pay the listed price, you receive 90%, and we keep a 10% commission. The renter keeps the bag — no return needed.',
       },
       {
         q: 'Is my bag insured while being rented?',
@@ -86,12 +98,12 @@ const FAQ_CATEGORIES = [
         a: 'Standard ($149/month): 1 bag at a time, unlimited swaps, no rental time limit. Premium ($229/month): 2 bags at a time, unlimited swaps, no rental time limit. Premium is ideal if you like to carry different bags regularly or want backup options.',
       },
       {
-        q: 'Do I need to contribute bags to have a membership?',
-        a: 'No, contributing is optional. Many members only rent and never contribute. Both renters and contributors are welcome.',
+        q: 'Do I need to be a member to contribute bags?',
+        a: 'No! Anyone can contribute bags. Members earn $60/month in credits per bag. Non-members earn $50 cash per completed rental via Stripe. Both members and non-members can list their bags for sale.',
       },
       {
         q: 'How do I use my earnings as credits?',
-        a: 'Earnings automatically apply to your membership account. They reduce your monthly membership fee dollar-for-dollar. For example: 1 bag earns $60/month — your Standard membership drops to $89. 2 bags earn $120/month — your Premium membership drops to $109.',
+        a: 'For members, earnings automatically apply to your membership account and reduce your monthly fee dollar-for-dollar. For example: 1 bag earns $60/month — your Standard membership drops to $89. Non-members receive cash payouts directly to their bank account after each rental.',
       },
     ],
   },

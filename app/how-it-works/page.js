@@ -33,8 +33,8 @@ const RENTER_STEPS = [
   {
     step: '04',
     title: 'Wear, Enjoy, Keep It',
-    description: 'Carry your bag as long as you want. There\'s no rental period limit. Enjoy knowing you own the insurance and depreciation risk.',
-    details: ['No time limit', 'Normal wear is covered', 'Swap anytime you\'re ready'],
+    description: 'Carry your bag as long as you want. There\'s no rental period limit. If the bag is listed for sale and you fall in love with it, you can buy it outright through our Try Before You Buy program.',
+    details: ['No time limit', 'Normal wear is covered', 'Buy it if you love it — Try Before You Buy'],
   },
   {
     step: '05',
@@ -48,8 +48,8 @@ const OWNER_STEPS = [
   {
     step: '01',
     title: 'Submit Your Bag',
-    description: 'List your designer bag through our contributor portal. Include brand, model, condition, and purchase year. Upload clear photos.',
-    details: [],
+    description: 'List your designer bag through our contributor portal. Include brand, model, condition, and purchase year. Upload clear photos. You can also set a sale price if you\'d like to list it for Try Before You Buy.',
+    details: ['No membership required to contribute', 'Optionally list for sale with your asking price'],
   },
   {
     step: '02',
@@ -60,14 +60,14 @@ const OWNER_STEPS = [
   {
     step: '03',
     title: 'We Authenticate',
-    description: 'Our authentication experts examine every detail using industry protocols. Material, stitching, hardware, holograms, date codes.',
+    description: 'Our authentication experts examine every detail using industry protocols. Material, stitching, hardware, holograms, date codes. We may suggest a market value if your bag is listed for sale.',
     details: ['Expert verification', 'Professional intake photos', 'Completely free service'],
   },
   {
     step: '04',
     title: 'Bag Joins the Pool',
-    description: 'Once verified, your bag becomes available to rent. Members can request it anytime. You stay in full control.',
-    details: ['Listed in our collection', 'Members can rent it', 'You set conditions (recall anytime)'],
+    description: 'Once verified, your bag becomes available to rent. If listed for sale, renters see the price and can purchase during their rental. You stay in full control.',
+    details: ['Listed in our collection', 'Members can rent it', 'For-sale bags show transparent pricing', 'You set conditions (recall anytime)'],
   },
   {
     step: '05',
@@ -77,9 +77,9 @@ const OWNER_STEPS = [
   },
   {
     step: '06',
-    title: 'Earn Credits',
-    description: 'Earn $60 in credits per 30-day cycle. Credits are added monthly and apply directly to your membership.',
-    details: ['$720/year per bag', 'Credited monthly'],
+    title: 'Earn — Two Tracks',
+    description: 'Active members earn $60/month in credits per bag (applied to your membership). Non-members earn $50 cash per completed rental, paid directly to your bank via Stripe. If a renter purchases your bag through Try Before You Buy, you receive 90% of the sale price.',
+    details: ['Members: $60/month credits ($720/year)', 'Consigners: $50 cash per rental', 'For-sale bags: 90% payout on purchase'],
   },
   {
     step: '07',
@@ -95,7 +95,7 @@ const MEMBERSHIP_BENEFITS = [
   { title: 'Free Shipping', description: 'Insured shipping both ways included' },
   { title: 'Full Insurance', description: 'Covered for accidental damage during rentals' },
   { title: 'No Time Limits', description: 'Keep a bag for a day, week, month, or longer' },
-  { title: 'Contribute & Earn', description: 'Optional: contribute bags for passive income' },
+  { title: 'Contribute & Earn', description: 'Contribute bags for credits, cash, or sell through Try Before You Buy' },
 ];
 
 const AUTHENTICATION_PROCESS = [
@@ -206,7 +206,7 @@ export default function HowItWorksPage() {
         <div className="text-center mb-14">
           <h2 className="text-3xl sm:text-4xl font-bold text-[#2D2040] mb-3">For Bag Owners</h2>
           <p className="text-gray-500 max-w-lg mx-auto">
-            Turn your closet into income. Contribute your bags and earn passive income.
+            Turn your closet into income. Members and non-members alike can contribute bags, earn from rentals, and list for sale.
           </p>
         </div>
         <div className="space-y-6">

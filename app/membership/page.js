@@ -87,7 +87,7 @@ const EVERY_PLAN_INCLUDES = [
   },
   {
     title: 'Contribute & Earn',
-    description: 'Contribute your own bags and earn passive income. Optional, but powerful.',
+    description: 'Contribute bags to earn credits, or list for sale with Try Before You Buy. Non-members can earn cash too.',
   },
   {
     title: 'Flexible Cancellation',
@@ -102,19 +102,19 @@ const EVERY_PLAN_INCLUDES = [
 const EARNING_EXPLAINED = [
   {
     title: 'How Contributing Works',
-    description: 'Submit your luxury bags for free authentication. Once verified, they join our pool and available to rent. You earn credits.',
+    description: 'Submit your luxury bags for free authentication. Once verified, they join our pool and are available to rent. You earn credits (members) or cash (non-members). You can also list for sale.',
   },
   {
-    title: 'Earning Potential',
-    description: 'Earn $60 in credits per 30-day cycle your bag is available. That\'s $720/year per bag.',
+    title: 'Member Earning Track',
+    description: 'Active members earn $60/month in credits per bag ($720/year). Credits offset your membership fee directly. 1 bag earns $60/month — Standard drops to $89.',
   },
   {
-    title: 'Credits Apply Directly',
-    description: 'Earnings offset your membership fee directly. 1 bag earns $60/month — Standard drops to $89. 2 bags earn $120/month — Premium drops to $109.',
+    title: 'Consigner Earning Track',
+    description: 'Not a member? No problem. Earn $50 cash each time your bag is rented. Payouts go directly to your bank via Stripe Connect.',
   },
   {
-    title: 'No Fees or Penalties',
-    description: 'There\'s no cost to contribute. No fees when your bag is rented. No hidden charges.',
+    title: 'Try Before You Buy',
+    description: 'List your bag for sale with a transparent price. Renters can try it and purchase it outright. You receive 90% of the sale price — we take a 10% commission.',
   },
   {
     title: 'Recall Anytime',
@@ -136,12 +136,12 @@ const FAQ_ITEMS = [
     a: 'You can pause for up to 3 months. Your membership stays active, but rentals are frozen. Restart anytime within the pause period.',
   },
   {
-    q: 'Do I have to contribute bags to use The Handoffs?',
-    a: 'No! Contributing is completely optional. Many members just rent and never contribute.',
+    q: 'Do I have to be a member to contribute bags?',
+    a: 'No! Anyone can contribute. Members earn $60/month in credits per bag. Non-members earn $50 cash per rental via Stripe. Both can also list bags for sale through Try Before You Buy.',
   },
   {
     q: 'How do I start contributing bags?',
-    a: 'Upload the required details and our team will assess fit. Once accepted, you\'ll be provided a shipping label to send your bag in for authentication and entrance into the collection.',
+    a: 'Upload the required details and our team will assess fit. Once accepted, you\'ll be provided a shipping label to send your bag in for authentication and entrance into the collection. Non-members just need to connect a bank account via Stripe for payouts.',
   },
   {
     q: 'What if my earnings exceed my membership cost?',
@@ -309,11 +309,19 @@ export default function MembershipPage() {
               </div>
             ))}
           </div>
-          <div className="mt-10 bg-white/5 border border-white/10 rounded-2xl p-10 text-center">
-            <p className="text-[#B0A8C8] text-sm mb-2">Example Scenario:</p>
-            <p className="text-xl font-bold text-white">
-              Contribute 2 bags → Earn <span className="text-[#7B5EA7]">$120/month</span> → Pay only <span className="text-[#7B5EA7]">$109/month</span> for Premium
-            </p>
+          <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-10 text-center">
+              <p className="text-[#B0A8C8] text-sm mb-2">Member with 2 bags:</p>
+              <p className="text-xl font-bold text-white">
+                Earn <span className="text-[#7B5EA7]">$120/month</span> → Pay only <span className="text-[#7B5EA7]">$109/month</span> for Premium
+              </p>
+            </div>
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-10 text-center">
+              <p className="text-[#B0A8C8] text-sm mb-2">Non-member consigner:</p>
+              <p className="text-xl font-bold text-white">
+                Earn <span className="text-green-400">$50 cash</span> per rental + <span className="text-green-400">90% payout</span> on sales
+              </p>
+            </div>
           </div>
         </div>
       </section>

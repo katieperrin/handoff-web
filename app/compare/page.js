@@ -15,14 +15,14 @@ const COMPARISON_DATA = [
   {
     service: 'The Handoffs',
     pricing: '$149–$229/mo',
-    model: 'Two-sided (rent & earn)',
+    model: 'Two-sided (rent, earn & buy)',
     selection: '200+ bags',
-    earnBack: '✓ Yes',
+    earnBack: '✓ Yes (credits or cash)',
     insurance: '✓ Full',
     authentication: '✓ Expert',
     flexibility: '✓ No time limit',
-    bagOwners: '✓ Can contribute',
-    bestFor: 'Renters who want to earn from their own bags',
+    bagOwners: '✓ Can contribute & sell',
+    bestFor: 'Renters who want to earn, and owners who want to sell through Try Before You Buy',
   },
   {
     service: 'Vivrelle',
@@ -97,11 +97,11 @@ const DETAILED_COMPARISON = [
     details: [
       {
         name: 'The Handoffs',
-        info: 'Two-sided marketplace where renters borrow and owners contribute bags. Owners earn credits from rentals.',
+        info: 'Two-sided marketplace where renters borrow, owners contribute, and bags can be purchased through Try Before You Buy. Members earn credits; non-members earn cash per rental.',
       },
       {
         name: 'Vivrelle & Others',
-        info: 'One-sided rental model. Company sources all bags. Members only rent, cannot earn.',
+        info: 'One-sided rental model. Company sources all bags. Members only rent, cannot earn or sell.',
       },
     ],
   },
@@ -110,7 +110,7 @@ const DETAILED_COMPARISON = [
     details: [
       {
         name: 'The Handoffs',
-        info: 'Can contribute your own bags for free authentication and earn $60 per 30-day cycle. Full insurance and full control.',
+        info: 'Contribute bags for free authentication. Members earn $60/month in credits. Non-members earn $50 cash per rental. Anyone can list for sale — renters try it first and buy at 90% payout to the seller.',
       },
       {
         name: 'Vivrelle & Others',
@@ -174,18 +174,18 @@ const DETAILED_COMPARISON = [
 const TESTIMONIAL_COMPARISON = [
   {
     aspect: 'As a Renter',
-    handoffs: 'Access luxury bags at a fraction of the ownership cost. Plus, earn credits by contributing your own bags.',
-    competitors: 'Rent luxury items from a large selection. No way to offset costs through your own inventory.',
+    handoffs: 'Access luxury bags at a fraction of the ownership cost. Fall in love with one? Buy it through Try Before You Buy. Plus, earn credits by contributing your own bags.',
+    competitors: 'Rent luxury items from a large selection. No way to try before buying or offset costs through your own inventory.',
   },
   {
     aspect: 'As a Bag Owner',
-    handoffs: 'Monetize your luxury bag collection. Contribute bags, get them authenticated, and earn passive income.',
-    competitors: 'Cannot contribute or earn. Your bags stay inactive in your closet.',
+    handoffs: 'Monetize your luxury bag collection with credits or cash. List for sale and earn 90% when a renter purchases. No membership required to consign.',
+    competitors: 'Cannot contribute or earn. Your bags stay inactive in your closet. Must go to a separate consignment site to sell.',
   },
   {
     aspect: 'Value Proposition',
-    handoffs: 'The only two-sided model that rewards both renters and contributors.',
-    competitors: 'One-way rental model. Great for access, but no earning potential.',
+    handoffs: 'The only platform that combines rental, earning, and buying. Rent it, earn from it, or sell it — all in one place.',
+    competitors: 'One-way rental model. Great for access, but no earning or selling potential.',
   },
 ];
 
@@ -305,10 +305,10 @@ export default function ComparePage() {
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-              The Handoffs: The Only Two-Sided Model
+              Rent. Earn. Buy. All in One Place.
             </h2>
             <p className="text-[#B0A8C8] max-w-2xl mx-auto">
-              Every other service is one-way: you rent from them. The Handoffs is different.
+              Every other service is one-way: you rent from them. The Handoffs lets you rent, earn, sell, and buy — no other platform does all four.
             </p>
           </div>
 
@@ -343,10 +343,10 @@ export default function ComparePage() {
               Each service has strengths. Vivrelle has the largest selection. Rent the Runway offers fashion variety beyond bags. Switch focuses on contemporary designers. Bag Borrow or Steal has competitive pricing.
             </p>
             <p>
-              But if you want to <strong>rent luxury bags AND monetize your own collection</strong>, The Handoffs is the only option. Our two-sided model means your bag collection can actively offset your membership costs while you enjoy unlimited access to ours.
+              But if you want to <strong>rent luxury bags, monetize your own collection, AND have the option to buy</strong>, The Handoffs is the only option. Our model lets members earn credits, non-members earn cash, and anyone can list for sale with transparent pricing through Try Before You Buy.
             </p>
             <p>
-              We're not trying to be the biggest or have the most bags. We're trying to be the smartest for people who own designer bags and want them to work harder.
+              We're not trying to be the biggest or have the most bags. We're building the smartest platform for people who love luxury bags — whether they want to rent, earn, sell, or buy.
             </p>
           </div>
         </div>

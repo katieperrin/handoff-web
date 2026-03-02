@@ -3,10 +3,10 @@ import { useState } from 'react';
 import Link from 'next/link';
 
 const EARNING_EXAMPLES = [
-  { bag: 'Chanel Classic Flap', brand: 'Chanel', earning: '$720/year', frequency: '$60 per 30-day cycle' },
-  { bag: 'Louis Vuitton Neverfull', brand: 'Louis Vuitton', earning: '$720/year', frequency: '$60 per 30-day cycle' },
-  { bag: 'Gucci Marmont', brand: 'Gucci', earning: '$720/year', frequency: '$60 per 30-day cycle' },
-  { bag: 'Prada Saffiano Bag', brand: 'Prada', earning: '$720/year', frequency: '$60 per 30-day cycle' },
+  { bag: 'Chanel Classic Flap', brand: 'Chanel', memberEarning: '$720/year in credits', consignerEarning: '$50 cash per rental', frequency: 'Members: $60/mo credits · Consigners: $50/rental cash' },
+  { bag: 'Louis Vuitton Neverfull', brand: 'Louis Vuitton', memberEarning: '$720/year in credits', consignerEarning: '$50 cash per rental', frequency: 'Members: $60/mo credits · Consigners: $50/rental cash' },
+  { bag: 'Gucci Marmont', brand: 'Gucci', memberEarning: '$720/year in credits', consignerEarning: '$50 cash per rental', frequency: 'Members: $60/mo credits · Consigners: $50/rental cash' },
+  { bag: 'Prada Saffiano Bag', brand: 'Prada', memberEarning: '$720/year in credits', consignerEarning: '$50 cash per rental', frequency: 'Members: $60/mo credits · Consigners: $50/rental cash' },
 ];
 
 const BENEFITS = [
@@ -27,12 +27,12 @@ const BENEFITS = [
     description: 'Change your mind? Recall your bag whenever you want. No penalties, no questions asked.',
   },
   {
-    title: 'Passive Income',
-    description: 'Your bag earns credits while it sits. No active work required — just contribute and earn.',
+    title: 'Two Ways to Earn',
+    description: 'Members earn $60/month in credits per bag. Not a member? Earn $50 cash each time your bag is rented — paid directly to your bank via Stripe.',
   },
   {
-    title: 'Credits Apply Directly',
-    description: 'Every dollar earned goes straight to your membership as rental credits, automatically applied to offset your subscription cost.',
+    title: 'Try Before You Buy',
+    description: 'List your bag for sale with a transparent price. Renters can try it first and purchase it outright. You receive 90% of the sale price.',
   },
 ];
 
@@ -40,22 +40,22 @@ const OWNER_STEPS = [
   {
     step: '01',
     title: 'Submit Your Bag',
-    description: 'List your designer bag with photos and details. Tell us the brand, model, condition, and purchase year.',
+    description: 'List your designer bag with photos and details. Tell us the brand, model, condition, and purchase year. Optionally set a sale price for Try Before You Buy.',
   },
   {
     step: '02',
     title: 'We Authenticate',
-    description: 'Our experts verify authenticity. We assess condition and take professional photos. Completely free.',
+    description: 'Our experts verify authenticity. We assess condition, take professional photos, and may suggest a market value. Completely free.',
   },
   {
     step: '03',
     title: 'Bag Joins the Pool',
-    description: 'Once approved, your bag becomes available to rent. Members can request it anytime.',
+    description: 'Once approved, your bag becomes available to rent. If listed for sale, renters see the price and can buy it during their rental.',
   },
   {
     step: '04',
-    title: 'You Earn Credits',
-    description: 'Earn $60 in credits per 30-day cycle your bag is available. Credited monthly.',
+    title: 'You Earn',
+    description: 'Members earn $60/month in credits. Non-members earn $50 cash per rental via Stripe. If a renter buys your bag, you receive 90% of the sale price.',
   },
 ];
 
@@ -65,15 +65,15 @@ const FAQ_ITEMS = [
     items: [
       {
         q: 'How much can I earn from my luxury bag?',
-        a: 'You earn $60 in credits per 30-day cycle your bag is available to rent. That\'s $720 per year per bag.',
+        a: 'It depends on your track. Active members earn $60/month in credits per bag ($720/year). Non-members (consigners) earn $50 cash each time their bag is rented, paid directly to your bank account via Stripe. You can also list your bag for sale — if a renter buys it, you receive 90% of the sale price.',
       },
       {
         q: 'How do earnings work?',
-        a: 'You earn credits when your bag is available to be rented. Credits accumulate monthly and apply directly to your membership. You can use them to rent other bags, or they offset your membership fee. Earnings are credited within 5 business days of the rental return.',
+        a: 'For members, credits accumulate monthly and apply directly to your membership fee. For consigners, cash payouts are transferred to your connected bank account after each rental completes. If your bag sells through Try Before You Buy, the payout (90% of sale price) is deposited within a few business days.',
       },
       {
         q: 'Can I earn from multiple bags?',
-        a: 'Yes! You can contribute up to 2 bags at a time. Each bag earns independently, so having both bags in the pool can double your monthly earnings.',
+        a: 'Yes! Each bag earns independently. Members with multiple bags can stack credits. Consigners earn cash per rental on each bag.',
       },
     ],
   },
@@ -94,7 +94,7 @@ const FAQ_ITEMS = [
       },
       {
         q: 'Do I need to be a member to contribute?',
-        a: 'Yes. An active membership is required to contribute bags to the pool. Members enjoy both the rental benefits and the ability to earn credits from their contributions.',
+        a: 'No! Anyone can contribute bags. Members earn $60/month in credits per bag. Non-members earn $50 cash per rental — you just need to connect a bank account via Stripe for payouts.',
       },
       {
         q: 'How long does authentication take?',
@@ -103,19 +103,23 @@ const FAQ_ITEMS = [
     ],
   },
   {
-    category: 'Process & Logistics',
+    category: 'Selling & Try Before You Buy',
     items: [
+      {
+        q: 'Can I list my bag for sale?',
+        a: 'Yes. When you submit your bag, you can toggle "List for Sale" and set your asking price. Our team may also suggest a market value after inspection. Renters see the sale price and can purchase the bag during their rental.',
+      },
+      {
+        q: 'How does Try Before You Buy work?',
+        a: 'When a renter has your for-sale bag, they can choose to buy it instead of returning it. They pay the listed price, you receive 90%, and we keep a 10% commission. No return needed — the bag is theirs.',
+      },
+      {
+        q: 'Can I earn rental income AND list for sale at the same time?',
+        a: 'Absolutely. Your bag earns rental income (credits or cash) while it\'s in the pool. If a renter decides to buy it, the sale completes and you receive your 90% payout. You earn from both rentals and the eventual sale.',
+      },
       {
         q: 'How do I ship my bag to you?',
         a: 'We email you a prepaid shipping label. You pack your bag securely and ship it to our authentication facility.',
-      },
-      {
-        q: 'What happens if my bag gets damaged during rental?',
-        a: 'Normal wear over time should be expected. Our insurance covers any damage beyond that — if a renter causes damage above normal use, we document it and file a claim on your behalf. You\'re not liable.',
-      },
-      {
-        q: 'Can I withdraw my earnings as cash?',
-        a: 'Earnings are in the form of rental credits that apply to your membership. You can use them to rent bags or offset your monthly fee. We don\'t offer cash withdrawals.',
       },
     ],
   },
@@ -178,7 +182,7 @@ export function BagOwnersPageContent() {
             Your Closet Is an Untapped Asset
           </h1>
           <p className="text-lg text-gray-500 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Designer bags you own but rarely use are just sitting there. With The Handoffs, your luxury bags work for you. Contribute them, we authenticate them, they join our rental pool, and you earn passive income — $60 per month per bag.
+            Designer bags you own but rarely use are just sitting there. With The Handoffs, your luxury bags work for you. Members earn $60/month in credits per bag. Not a member? Earn $50 cash each time your bag is rented. You can also list for sale — renters try it first and buy it outright.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link
@@ -239,25 +243,36 @@ export function BagOwnersPageContent() {
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {EARNING_EXAMPLES.map(({ bag, brand, earning, frequency }) => (
+            {EARNING_EXAMPLES.map(({ bag, brand, memberEarning, consignerEarning, frequency }) => (
               <div key={bag} className="bg-white/5 border border-white/10 rounded-2xl p-8">
                 <p className="text-xs font-bold text-[#C4B5E8] uppercase tracking-widest mb-2">{brand}</p>
                 <h3 className="text-xl font-bold text-white mb-3">{bag}</h3>
-                <div className="space-y-2">
+                <div className="space-y-3">
                   <div>
-                    <p className="text-xs text-[#B0A8C8] mb-1">Annual Earnings</p>
-                    <p className="text-3xl font-bold text-[#7B5EA7]">{earning}</p>
+                    <p className="text-xs text-[#B0A8C8] mb-1">As a Member</p>
+                    <p className="text-2xl font-bold text-[#7B5EA7]">{memberEarning}</p>
                   </div>
-                  <p className="text-sm text-[#B0A8C8]">{frequency}</p>
+                  <div>
+                    <p className="text-xs text-[#B0A8C8] mb-1">As a Consigner</p>
+                    <p className="text-xl font-bold text-green-400">{consignerEarning}</p>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
-          <div className="mt-10 bg-white/5 border border-white/10 rounded-2xl p-8 text-center">
-            <p className="text-[#B0A8C8] text-sm mb-3">Have multiple bags?</p>
-            <p className="text-2xl font-bold text-white">
-              2 bags = <span className="text-[#7B5EA7]">$1,440 annual earnings</span>
-            </p>
+          <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-8 text-center">
+              <p className="text-[#B0A8C8] text-sm mb-3">Members with 2 bags</p>
+              <p className="text-2xl font-bold text-white">
+                <span className="text-[#7B5EA7]">$1,440/year</span> in credits
+              </p>
+            </div>
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-8 text-center">
+              <p className="text-[#B0A8C8] text-sm mb-3">List for sale?</p>
+              <p className="text-2xl font-bold text-white">
+                <span className="text-green-400">90% payout</span> on purchases
+              </p>
+            </div>
           </div>
         </div>
       </section>

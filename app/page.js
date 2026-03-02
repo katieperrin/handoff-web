@@ -30,7 +30,7 @@ const VALUES = [
   {
     label: 'Earn',
     headline: 'Your closet is an untapped asset.',
-    body: "The average luxury bag sits unused for most of its life. If you own one, The Handoffs puts it to work. Contribute it to the pool and earn $60 in credits for every 30 days it's available to rent. Recall it whenever you want it back.",
+    body: "The average luxury bag sits unused for most of its life. If you own one, The Handoffs puts it to work. Members earn $60/month in credits per bag. Not a member? Earn $50 cash each time your bag is rented. You can also list it for sale — renters can try it first and buy if they love it.",
   },
   {
     label: 'Sustain',
@@ -137,9 +137,9 @@ export default function HomePage() {
         </h1>
         <h2 className="sr-only">A Members-Only Luxury Handbag Rental Club</h2>
         <p className="text-lg text-gray-500 max-w-2xl mx-auto mb-10 leading-relaxed">
-          The Handoffs is a members-only rental club for authenticated luxury handbags.
+          The Handoffs is a rental club for authenticated luxury handbags.
           Borrow from a curated collection, earn from bags you already own,
-          and keep fashion in circulation — not in a closet.
+          and if you find the one — buy it through our Try Before You Buy program.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           {loggedIn ? (
@@ -192,14 +192,17 @@ export default function HomePage() {
               The idle bag in your closet could be paying you.
             </h2>
             <p className="text-gray-500 leading-relaxed mb-8">
-              Contribute your bag to The Handoffs pool and earn <strong className="text-[#2D2040]">$60 in credits for every 30 days</strong> it's available to rent.
-              You stay in control — recall it whenever you want it back, no questions asked.
+              Contribute your bag to The Handoffs pool and earn while it's out in the world.
+              Members earn <strong className="text-[#2D2040]">$60/month in credits</strong> per bag.
+              Not a member? Earn <strong className="text-[#2D2040]">$50 cash each time</strong> your bag is rented — paid via Stripe.
+              You can also list your bag for sale with a transparent price. Renters can try it first and buy it outright.
             </p>
             <div className="space-y-3 mb-8">
               {[
                 'Free white-glove authentication & intake',
                 'We handle shipping, insurance, and returns',
-                'Credits apply directly to your membership',
+                'Members earn credits; non-members earn cash',
+                'List for sale with Try Before You Buy',
                 'Recall your bag anytime',
               ].map((item) => (
                 <div key={item} className="flex items-start gap-3">
@@ -225,10 +228,10 @@ export default function HomePage() {
           </div>
           <div className="grid grid-cols-2 gap-4">
             {[
-              { stat: '$60', label: 'credits per 30-day cycle' },
-              { stat: '0', label: 'upfront cost to contribute' },
+              { stat: '$60', label: 'credits/month for members' },
+              { stat: '$50', label: 'cash per rental for consigners' },
+              { stat: '90%', label: 'payout on Try Before You Buy sales' },
               { stat: '100%', label: 'control — recall anytime' },
-              { stat: '∞', label: 'cycles as long as you want' },
             ].map(({ stat, label }) => (
               <div key={label} className="bg-white rounded-2xl border border-gray-100 p-6 text-center">
                 <p className="text-3xl font-bold text-[#7B5EA7] mb-1">{stat}</p>
@@ -348,7 +351,7 @@ export default function HomePage() {
                 <span className="text-xs font-semibold text-[#7B5EA7] uppercase tracking-widest">The</span>
                 <span className="text-base font-bold text-[#2D2040]">Handoffs</span>
               </div>
-              <p className="text-xs text-gray-400 leading-relaxed">Members-only luxury handbag rental club. Rent authenticated designer bags or earn from the ones you own.</p>
+              <p className="text-xs text-gray-400 leading-relaxed">Luxury handbag rental club. Rent authenticated designer bags, earn from the ones you own, or buy through Try Before You Buy.</p>
             </div>
             <div>
               <p className="text-xs font-bold text-[#2D2040] uppercase tracking-wider mb-3">Discover</p>
