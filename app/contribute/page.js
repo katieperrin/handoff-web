@@ -44,6 +44,30 @@ export default function ContributePage() {
   const [success, setSuccess] = useState(false);
   const [agreedToPolicy, setAgreedToPolicy] = useState(false);
 
+  // W-9 state (non-member contributors)
+  const [isSubscriber, setIsSubscriber] = useState(true);
+  const [hasW9OnFile, setHasW9OnFile] = useState(false);
+  const [w9File, setW9File] = useState(null);
+  const [w9FileName, setW9FileName] = useState('');
+  const [isDragging, setIsDragging] = useState(false);
+
+  // Fetch subscription status and W-9 status on mount
+  useEffect(() => {
+    (async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) return;
+      const { data } = await supabase
+        .from('users')
+        .select('subscription_tier, w9_url')
+        .eq('id', user.id)
+        .maybeSingle();
+      if (data) {
+        setIsSubscriber(!!data.subscription_tier);
+        setHasW9OnFile(!!data.w9_url);
+      }
+    })();
+  }, []);
+
   useEffect(() => {
     if (tab === 'submissions') fetchSubmissions();
   }, [tab]);
@@ -128,6 +152,48 @@ export default function ContributePage() {
     return data.publicUrl;
   }
 
+  async function uploadW9(file, userId) {
+    const path = `${userId}/w9.pdf`;
+    const { error } = await supabase.storage
+      .from('w9-forms')
+      .upload(path, file, { contentType: 'application/pdf', upsert: true });
+    if (error) throw new Error(error.message);
+    return path;
+  }
+
+  function handleW9DragOver(e) {
+    e.preventDefault();
+    setIsDragging(true);
+  }
+  function handleW9DragLeave() {
+    setIsDragging(false);
+  }
+  function handleW9Drop(e) {
+    e.preventDefault();
+    setIsDragging(false);
+    const file = e.dataTransfer.files[0];
+    if (file && file.type === 'application/pdf') {
+      setW9File(file);
+      setW9FileName(file.name);
+    } else {
+      setSubmitError('Please upload a PDF file.');
+    }
+  }
+  function handleW9FileChange(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    if (file.type !== 'application/pdf') {
+      setSubmitError('Please upload a PDF file.');
+      return;
+    }
+    if (file.size > 10 * 1024 * 1024) {
+      setSubmitError('W-9 file must be under 10 MB.');
+      return;
+    }
+    setW9File(file);
+    setW9FileName(file.name);
+  }
+
   async function handleSubmit(e) {
     e.preventDefault();
     if (!photoFile) {
@@ -136,6 +202,10 @@ export default function ContributePage() {
     }
     if (!agreedToPolicy) {
       setSubmitError('Please review and agree to the Contribution Agreement.');
+      return;
+    }
+    if (!isSubscriber && !hasW9OnFile && !w9File) {
+      setSubmitError('Please upload your completed W-9 form.');
       return;
     }
     setSubmitting(true);
@@ -175,6 +245,13 @@ export default function ContributePage() {
       });
       if (contribErr) throw new Error(contribErr.message);
 
+      // Upload W-9 for non-members
+      if (!isSubscriber && w9File) {
+        const w9Path = await uploadW9(w9File, user.id);
+        await supabase.from('users').update({ w9_url: w9Path }).eq('id', user.id);
+        setHasW9OnFile(true);
+      }
+
       setSuccess(true);
       setTimeout(() => {
         setSuccess(false);
@@ -182,6 +259,7 @@ export default function ContributePage() {
         setPhotoFile(null); setPhotoPreview(null);
         setFromName(''); setStreet(''); setCity(''); setState(''); setZip('');
         setAgreedToPolicy(false);
+        setW9File(null); setW9FileName('');
         setTab('submissions');
         fetchSubmissions();
       }, 2200);
@@ -228,7 +306,9 @@ export default function ContributePage() {
       {tab === 'submit' ? (
         <form onSubmit={handleSubmit} className="max-w-lg space-y-5">
           <p className="text-sm text-[#7B5EA7] bg-purple-50 rounded-xl px-4 py-3">
-            Earn $60 in credits for every 30 days your bag is in the rental pool.
+            {isSubscriber
+              ? 'Earn $60 in credits for every 30 days your bag is in the rental pool.'
+              : 'Earn $50/month cash while your bag is actively rented, paid via Stripe.'}
           </p>
 
           <div className="grid grid-cols-2 gap-4">
@@ -273,6 +353,71 @@ export default function ContributePage() {
               <img src={photoPreview} alt="preview" className="mt-3 w-full h-40 object-cover rounded-xl border border-gray-100" />
             )}
           </div>
+
+          {/* W-9 Tax Form (non-members only) */}
+          {!isSubscriber && (
+            <div className="border-t border-gray-100 pt-4">
+              <p className="text-sm font-bold text-[#2D2040] mb-1">W-9 Tax Form</p>
+              <p className="text-xs text-gray-400 mb-2">
+                Since you&apos;ll earn cash payouts, we need a completed W-9 on file for tax reporting.
+              </p>
+              <a
+                href="https://www.irs.gov/pub/irs-pdf/fw9.pdf"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-block text-sm text-[#7B5EA7] font-semibold hover:underline mb-3"
+              >
+                Download blank W-9 from the IRS &rarr;
+              </a>
+              {hasW9OnFile && !w9File ? (
+                <div className="flex items-center justify-between bg-green-50 rounded-xl px-4 py-3">
+                  <div className="flex items-center gap-2">
+                    <span className="text-green-600 font-bold">&#10003;</span>
+                    <span className="text-sm text-green-700 font-medium">W-9 on file</span>
+                  </div>
+                  <label className="text-sm text-[#7B5EA7] font-semibold cursor-pointer hover:underline">
+                    Replace
+                    <input type="file" accept=".pdf" onChange={handleW9FileChange} className="hidden" />
+                  </label>
+                </div>
+              ) : (
+                <>
+                  <div
+                    onDragOver={handleW9DragOver}
+                    onDragLeave={handleW9DragLeave}
+                    onDrop={handleW9Drop}
+                    onClick={() => document.getElementById('w9-input').click()}
+                    className={`border-2 border-dashed rounded-xl px-4 py-8 text-center cursor-pointer transition-colors ${
+                      isDragging
+                        ? 'border-[#7B5EA7] bg-purple-50'
+                        : w9FileName
+                          ? 'border-green-300 bg-green-50'
+                          : 'border-gray-200 hover:border-purple-300'
+                    }`}
+                  >
+                    {w9FileName ? (
+                      <div className="flex items-center justify-center gap-2">
+                        <span className="text-green-600 font-bold">&#10003;</span>
+                        <span className="text-sm text-green-700 font-medium">{w9FileName}</span>
+                      </div>
+                    ) : (
+                      <p className="text-sm text-gray-400">
+                        Drop your completed W-9 here, or <span className="text-[#7B5EA7] font-semibold">click to upload</span>
+                      </p>
+                    )}
+                    <input
+                      id="w9-input"
+                      type="file"
+                      accept=".pdf"
+                      onChange={handleW9FileChange}
+                      className="hidden"
+                    />
+                  </div>
+                  <p className="text-xs text-gray-300 mt-1">PDF only, max 10 MB</p>
+                </>
+              )}
+            </div>
+          )}
 
           <div className="border-t border-gray-100 pt-4">
             <p className="text-sm font-bold text-[#2D2040] mb-1">Shipping Address</p>
