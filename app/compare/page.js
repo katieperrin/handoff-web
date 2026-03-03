@@ -16,7 +16,6 @@ const COMPARISON_DATA = [
     service: 'The Handoffs',
     pricing: '$149–$229/mo',
     model: 'Two-sided (rent, earn & buy)',
-    selection: '200+ bags',
     earnBack: '✓ Yes (credits or cash)',
     insurance: '✓ Full',
     authentication: '✓ Expert',
@@ -28,7 +27,6 @@ const COMPARISON_DATA = [
     service: 'Vivrelle',
     pricing: '$99–$349/mo',
     model: 'Renter-only',
-    selection: '1000+ bags',
     earnBack: '✗ No',
     insurance: '✓ Full',
     authentication: '✓ Expert',
@@ -40,7 +38,6 @@ const COMPARISON_DATA = [
     service: 'Rent the Runway',
     pricing: '$89–$189/mo',
     model: 'Renter-only',
-    selection: '1000+ items',
     earnBack: '✗ No',
     insurance: '✓ Covered',
     authentication: 'Mixed quality',
@@ -52,7 +49,6 @@ const COMPARISON_DATA = [
     service: 'Switch',
     pricing: '$99–$199/mo',
     model: 'Renter-only',
-    selection: '800+ bags',
     earnBack: '✗ No',
     insurance: '✓ Full',
     authentication: '✓ Expert',
@@ -64,7 +60,6 @@ const COMPARISON_DATA = [
     service: 'Bag Borrow or Steal',
     pricing: '$89–$259/mo',
     model: 'Renter-only',
-    selection: '300+ bags',
     earnBack: '✗ No',
     insurance: '✓ Covered',
     authentication: 'Limited',
@@ -132,23 +127,6 @@ const DETAILED_COMPARISON = [
       {
         name: 'Rent the Runway',
         info: 'Mixed authentication. Focuses on newer designer releases; vintage authentication less rigorous.',
-      },
-    ],
-  },
-  {
-    aspect: 'Bag Selection',
-    details: [
-      {
-        name: 'The Handoffs',
-        info: 'Curated collection of 200+ authenticated luxury handbags from premium brands.',
-      },
-      {
-        name: 'Vivrelle',
-        info: '1000+ designer bags from the most prestigious luxury houses.',
-      },
-      {
-        name: 'Rent the Runway',
-        info: '1000+ items across fashion, shoes, and accessories — not bags-specific.',
       },
     ],
   },
@@ -240,7 +218,6 @@ export default function ComparePage() {
               <tr className="border-b-2 border-gray-200">
                 <th className="text-left p-4 font-bold text-[#2D2040]">Service</th>
                 <th className="text-center p-4 font-bold text-[#2D2040]">Pricing</th>
-                <th className="text-center p-4 font-bold text-[#2D2040]">Bag Selection</th>
                 <th className="text-center p-4 font-bold text-[#2D2040]">Owners Can Earn</th>
                 <th className="text-center p-4 font-bold text-[#2D2040]">Authentication</th>
                 <th className="text-center p-4 font-bold text-[#2D2040]">Insurance</th>
@@ -251,7 +228,6 @@ export default function ComparePage() {
                 <tr key={row.service} className="border-b border-gray-100 hover:bg-white transition-colors">
                   <td className="p-4 font-semibold text-[#2D2040]">{row.service}</td>
                   <td className="text-center p-4 text-sm text-gray-600">{row.pricing}</td>
-                  <td className="text-center p-4 text-sm text-gray-600">{row.selection}</td>
                   <td className="text-center p-4 text-sm">{row.earnBack}</td>
                   <td className="text-center p-4 text-sm text-gray-600">{row.authentication}</td>
                   <td className="text-center p-4 text-sm text-gray-600">{row.insurance}</td>
@@ -373,16 +349,6 @@ export default function ComparePage() {
             </summary>
             <p className="mt-4 text-gray-600 text-sm leading-relaxed">
               Absolutely. Many members only rent and never contribute. The Handoffs works great as a pure rental service. Contributing is optional and designed for those who already own luxury bags.
-            </p>
-          </details>
-
-          <details className="bg-white rounded-lg border border-gray-100 p-6 group">
-            <summary className="cursor-pointer font-semibold text-[#2D2040] flex items-center justify-between">
-              Is The Handoffs selection large enough?
-              <span className="ml-3 transform group-open:rotate-180 transition-transform">▼</span>
-            </summary>
-            <p className="mt-4 text-gray-600 text-sm leading-relaxed">
-              Our curated collection of 200+ bags covers the major luxury brands and most popular styles. Our model grows the selection as more owners contribute. If you want maximum selection upfront, Vivrelle may be better. If you value authentication rigor and the ability to earn, The Handoffs is ideal.
             </p>
           </details>
 
