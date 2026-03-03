@@ -20,15 +20,15 @@ const HOW_SELLING_WORKS = [
   },
   {
     step: '04',
-    title: 'Bag Sells — You Get 90%',
-    description: 'A renter falls in love with your bag and buys it through Try Before You Buy. You receive 90% of the sale price. We keep just 10%.',
+    title: 'Bag Sells — You Get 85%',
+    description: 'A renter falls in love with your bag and buys it through Try Before You Buy. You receive 85% of the sale price. We keep just 15%.',
   },
 ];
 
 const COMPETITOR_COMPARISON = [
   {
     platform: 'The Handoffs',
-    sellerGets: '90%',
+    sellerGets: '85%',
     monthlyIncome: '$50/mo while rented',
     priceControl: 'You set the price',
     timeToEarn: 'Day 1 (rental income)',
@@ -65,7 +65,7 @@ const SCENARIO_EXAMPLES = [
     bag: 'Chanel Classic Flap',
     salePrice: 7000,
     daysToSell: 60,
-    handoffs: { rentalIncome: 100, salePayout: 6300, total: 6400 },
+    handoffs: { rentalIncome: 100, salePayout: 5950, total: 6050 },
     realreal: { rentalIncome: 0, salePayout: 4200, total: 4200 },
     fashionphile: { rentalIncome: 0, salePayout: 4550, total: 4550 },
   },
@@ -73,7 +73,7 @@ const SCENARIO_EXAMPLES = [
     bag: 'Louis Vuitton Neverfull MM',
     salePrice: 1800,
     daysToSell: 60,
-    handoffs: { rentalIncome: 100, salePayout: 1620, total: 1720 },
+    handoffs: { rentalIncome: 100, salePayout: 1530, total: 1630 },
     realreal: { rentalIncome: 0, salePayout: 1080, total: 1080 },
     fashionphile: { rentalIncome: 0, salePayout: 1170, total: 1170 },
   },
@@ -89,8 +89,8 @@ const KEY_BENEFITS = [
     description: 'Your bag earns $50/month cash while it\'s actively rented. Traditional consignment pays $0 until the item sells. We pay you from day one.',
   },
   {
-    title: '90% Payout on Sale',
-    description: 'When your bag sells, you keep 90%. The RealReal takes 30-50%. Fashionphile and Rebag pay 60-70% of market value. We take just 10%.',
+    title: '85% Payout on Sale',
+    description: 'When your bag sells, you keep 85%. The RealReal takes 30-50%. Fashionphile and Rebag pay 60-70% of market value. We take just 15%.',
   },
   {
     title: 'Full Insurance Coverage',
@@ -113,11 +113,11 @@ const FAQ_ITEMS = [
   },
   {
     q: 'How does Try Before You Buy work?',
-    a: 'When a member rents your bag and it\'s listed for sale, they see the price. If they love it, they can purchase it outright. You receive 90% of the sale price, we keep 10%. The renter keeps the bag — no return needed.',
+    a: 'When a member rents your bag and it\'s listed for sale, they see the price. If they love it, they can purchase it outright. You receive 85% of the sale price, we keep 15%. The renter keeps the bag — no return needed.',
   },
   {
     q: 'When do I get paid?',
-    a: 'Rental income ($50/month prorated) is paid via Stripe after each rental completes. Sale payouts (90% of sale price) are transferred to your Stripe Connect account within a few business days of the purchase.',
+    a: 'Rental income ($50/month prorated) is paid via Stripe after each rental completes. Sale payouts (85% of sale price) are transferred to your Stripe Connect account within a few business days of the purchase.',
   },
   {
     q: 'Can I change my asking price?',
@@ -132,12 +132,12 @@ const FAQ_ITEMS = [
     a: 'Yes! Your bag earns $50/month cash while it\'s actively rented, regardless of whether it\'s listed for sale. You earn from both rentals and the eventual sale.',
   },
   {
-    q: 'What\'s the 10% commission?',
-    a: 'When your bag sells through Try Before You Buy, we keep 10% of the sale price as commission. You receive 90%. Compare that to The RealReal\'s 30-50% or Fashionphile\'s ~35% effective cut.',
+    q: 'What\'s the 15% commission?',
+    a: 'When your bag sells through Try Before You Buy, we keep 15% of the sale price as commission. You receive 85%. Compare that to The RealReal\'s 30-50% or Fashionphile\'s ~35% effective cut.',
   },
   {
     q: 'Do I need to be a member to sell my bag?',
-    a: 'No. Anyone can list bags for sale and earn rental income. Non-members earn $50/month cash while their bag is rented. Members earn $60/month in credits while their bag is in the pool. Both can list for sale with 90% payout.',
+    a: 'No. Anyone can list bags for sale and earn rental income. Non-members earn $50/month cash while their bag is rented. Members earn $60/month in credits while their bag is in the pool. Both can list for sale with 85% payout.',
   },
 ];
 
@@ -198,7 +198,7 @@ export function SellYourBagContent() {
             Earn $50/Month While Your Bag Waits to Sell
           </h1>
           <p className="text-lg text-gray-500 max-w-2xl mx-auto mb-10 leading-relaxed">
-            The only consignment service that pays you monthly rental income while your bag is listed for sale. Set your own price, keep 90% when it sells, and earn cash every month it's rented. No other platform does all three.
+            The only consignment service that pays you monthly rental income while your bag is listed for sale. Set your own price, keep 85% when it sells, and earn cash every month it's rented. No other platform does all three.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link
@@ -254,7 +254,7 @@ export function SellYourBagContent() {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
           {[
-            { stat: '90%', label: 'Payout on Sale', detail: 'vs 50–70% at The RealReal, Fashionphile, or Rebag' },
+            { stat: '85%', label: 'Payout on Sale', detail: 'vs 50–70% at The RealReal, Fashionphile, or Rebag' },
             { stat: '$50/mo', label: 'Rental Income', detail: 'Earn cash while your bag waits for a buyer. No one else does this.' },
             { stat: 'You', label: 'Set the Price', detail: 'Not an algorithm. Not a buyer. You decide what your bag is worth.' },
           ].map(({ stat, label, detail }) => (
@@ -427,7 +427,7 @@ export function SellYourBagContent() {
             Ready to Sell Your Bag the Smarter Way?
           </h2>
           <p className="text-[#B0A8C8] mb-10 text-lg">
-            List your bag, earn monthly income, and keep 90% when it sells.
+            List your bag, earn monthly income, and keep 85% when it sells.
           </p>
           <Link
             href="/apply"

@@ -14,11 +14,11 @@ import { CompareConsignmentContent } from './page-client';
 const FAQ_ITEMS = [
   {
     q: 'Why is The Handoffs commission so much lower?',
-    a: 'Because we earn revenue from rental memberships, not just sales commissions. Our business model doesn\'t depend on taking a huge cut from sellers. We only charge 10% on completed sales.',
+    a: 'Because we earn revenue from rental memberships, not just sales commissions. Our business model doesn\'t depend on taking a huge cut from sellers. We only charge 15% on completed sales.',
   },
   {
     q: 'Is The Handoffs really consignment?',
-    a: 'It\'s better than consignment. Traditional consignment means your bag sits in a warehouse earning nothing until it sells. With The Handoffs, your bag is actively rented, earning you $50/month cash while it waits for a buyer. When it sells, you keep 90%.',
+    a: 'It\'s better than consignment. Traditional consignment means your bag sits in a warehouse earning nothing until it sells. With The Handoffs, your bag is actively rented, earning you $50/month cash while it waits for a buyer. When it sells, you keep 85%.',
   },
   {
     q: 'How does rental income work for consigners?',
@@ -34,7 +34,7 @@ const FAQ_ITEMS = [
   },
   {
     q: 'How does this compare to selling on eBay or Poshmark?',
-    a: 'eBay charges ~13% in fees and Poshmark takes 20%. Neither pays you income while waiting for a buyer, and neither authenticates bags. The Handoffs charges 10%, pays rental income, and handles authentication, insurance, shipping, and returns.',
+    a: 'eBay charges ~13% in fees and Poshmark takes 20%. Neither pays you income while waiting for a buyer, and neither authenticates bags. The Handoffs charges 15%, pays rental income, and handles authentication, insurance, shipping, and returns.',
   },
 ];
 

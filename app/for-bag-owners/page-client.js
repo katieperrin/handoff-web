@@ -23,17 +23,17 @@ const THREE_WAYS_TO_EARN = [
   },
   {
     track: 'Sell via Try Before You Buy',
-    amount: '90%',
+    amount: '85%',
     detail: 'payout when your bag sells',
-    annual: 'Only 10% commission',
+    annual: 'Only 15% commission',
     color: 'amber',
-    description: 'List your bag for sale at a price you set. Renters try it first and can buy it outright. You earn rental income while waiting, then 90% when it sells.',
+    description: 'List your bag for sale at a price you set. Renters try it first and can buy it outright. You earn rental income while waiting, then 85% when it sells.',
     best: 'Best for owners ready to part with their bag at a great return.',
   },
 ];
 
 const SELL_HIGHLIGHTS = [
-  { stat: '90%', label: 'Payout on sales', sub: 'vs 50-70% elsewhere' },
+  { stat: '85%', label: 'Payout on sales', sub: 'vs 50-70% elsewhere' },
   { stat: '$50/mo', label: 'While you wait', sub: 'No other platform pays this' },
   { stat: 'You', label: 'Set the price', sub: 'Full control, change anytime' },
 ];
@@ -48,7 +48,7 @@ const EARNING_EXAMPLES = [
 const BENEFITS = [
   {
     title: 'Try Before You Buy',
-    description: 'List your bag for sale with a transparent price. Renters can try it first and purchase it outright. You receive 90% of the sale price — only 10% commission.',
+    description: 'List your bag for sale with a transparent price. Renters can try it first and purchase it outright. You receive 85% of the sale price — only 15% commission.',
   },
   {
     title: 'Two Ways to Earn',
@@ -91,7 +91,7 @@ const OWNER_STEPS = [
   {
     step: '04',
     title: 'You Earn',
-    description: 'Members earn $60/month in credits while their bag is in the pool. Non-members earn $50/month cash while their bag is actively rented via Stripe. If a renter buys your bag, you receive 90% of the sale price.',
+    description: 'Members earn $60/month in credits while their bag is in the pool. Non-members earn $50/month cash while their bag is actively rented via Stripe. If a renter buys your bag, you receive 85% of the sale price.',
   },
 ];
 
@@ -101,11 +101,11 @@ const FAQ_ITEMS = [
     items: [
       {
         q: 'How much can I earn from my luxury bag?',
-        a: 'It depends on your track. Active members earn $60/month in credits while their bag is in the pool ($720/year if available all year). Non-members (consigners) earn $50/month cash while their bag is actively rented, prorated and paid directly to your bank account via Stripe. You can also list your bag for sale — if a renter buys it, you receive 90% of the sale price.',
+        a: 'It depends on your track. Active members earn $60/month in credits while their bag is in the pool ($720/year if available all year). Non-members (consigners) earn $50/month cash while their bag is actively rented, prorated and paid directly to your bank account via Stripe. You can also list your bag for sale — if a renter buys it, you receive 85% of the sale price.',
       },
       {
         q: 'How do earnings work?',
-        a: 'For members, credits accumulate monthly and apply directly to your membership fee. For consigners, cash payouts are transferred to your connected bank account after each rental completes. If your bag sells through Try Before You Buy, the payout (90% of sale price) is deposited within a few business days.',
+        a: 'For members, credits accumulate monthly and apply directly to your membership fee. For consigners, cash payouts are transferred to your connected bank account after each rental completes. If your bag sells through Try Before You Buy, the payout (85% of sale price) is deposited within a few business days.',
       },
       {
         q: 'Can I earn from multiple bags?',
@@ -122,15 +122,15 @@ const FAQ_ITEMS = [
       },
       {
         q: 'How does Try Before You Buy work?',
-        a: 'When a renter has your for-sale bag, they can choose to buy it instead of returning it. They pay the listed price, you receive 90%, and we keep a 10% commission. No return needed — the bag is theirs.',
+        a: 'When a renter has your for-sale bag, they can choose to buy it instead of returning it. They pay the listed price, you receive 85%, and we keep a 15% commission. No return needed — the bag is theirs.',
       },
       {
         q: 'Can I earn rental income AND list for sale at the same time?',
-        a: 'Absolutely. Your bag earns rental income (credits or cash) while it\'s in the pool. If a renter decides to buy it, the sale completes and you receive your 90% payout. You earn from both rentals and the eventual sale.',
+        a: 'Absolutely. Your bag earns rental income (credits or cash) while it\'s in the pool. If a renter decides to buy it, the sale completes and you receive your 85% payout. You earn from both rentals and the eventual sale.',
       },
       {
         q: 'How does this compare to The RealReal or Fashionphile?',
-        a: 'The RealReal takes 30-50% commission and you earn nothing while your bag waits to sell. Fashionphile offers ~60-70% buyout with no waiting income. The Handoffs charges only 10% commission, pays you rental income while waiting, and lets you set your own price. You keep 90% when it sells.',
+        a: 'The RealReal takes 30-50% commission and you earn nothing while your bag waits to sell. Fashionphile offers ~60-70% buyout with no waiting income. The Handoffs charges only 15% commission, pays you rental income while waiting, and lets you set your own price. You keep 85% when it sells.',
       },
     ],
   },
@@ -222,7 +222,7 @@ export function BagOwnersPageContent() {
             Your Closet Is an Untapped Asset
           </h1>
           <p className="text-lg text-gray-500 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Earn monthly rental income, sell with a 90% payout, or both. The Handoffs gives bag owners three ways to earn — with free authentication, full insurance, and complete control.
+            Earn monthly rental income, sell with an 85% payout, or both. The Handoffs gives bag owners three ways to earn — with free authentication, full insurance, and complete control.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link
@@ -339,7 +339,7 @@ export function BagOwnersPageContent() {
               The Smarter Way to Sell
             </h2>
             <p className="text-[#B0A8C8] max-w-lg mx-auto">
-              Why settle for 50-70% at a consignment shop when you can keep 90% — and earn rental income while you wait?
+              Why settle for 50-70% at a consignment shop when you can keep 85% — and earn rental income while you wait?
             </p>
           </div>
 
@@ -370,7 +370,7 @@ export function BagOwnersPageContent() {
                 <tbody>
                   <tr className="border-b border-white/5 bg-[#7B5EA7]/20">
                     <td className="py-4 pr-4 font-bold text-white">The Handoffs</td>
-                    <td className="py-4 px-4 text-center text-[#7B5EA7] font-bold">90%</td>
+                    <td className="py-4 px-4 text-center text-[#7B5EA7] font-bold">85%</td>
                     <td className="py-4 px-4 text-center text-green-400 font-bold">$50/mo</td>
                     <td className="py-4 pl-4 text-center text-green-400 font-bold">Yes</td>
                   </tr>
@@ -451,7 +451,7 @@ export function BagOwnersPageContent() {
           <div className="bg-white rounded-2xl p-8 border border-gray-100 text-center">
             <p className="text-gray-500 text-sm mb-3">List for sale?</p>
             <p className="text-2xl font-bold text-[#2D2040]">
-              <span className="text-emerald-600">90% payout</span> on purchases
+              <span className="text-emerald-600">85% payout</span> on purchases
             </p>
           </div>
         </div>
@@ -561,7 +561,7 @@ export function BagOwnersPageContent() {
             Ready to Earn or Sell?
           </h2>
           <p className="text-[#B0A8C8] mb-10 text-lg">
-            Whether you want monthly rental income, a 90% sale payout, or both — getting started takes just a few minutes.
+            Whether you want monthly rental income, an 85% sale payout, or both — getting started takes just a few minutes.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link

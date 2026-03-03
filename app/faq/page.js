@@ -58,15 +58,15 @@ const FAQ_CATEGORIES = [
       },
       {
         q: 'How much can I earn from my luxury bag?',
-        a: 'It depends on your track. Active members earn $60/month in credits while their bag is in the pool ($720/year if available all year). Non-members (consigners) earn $50/month cash while their bag is actively rented, prorated and paid directly to your bank via Stripe. You can also list for sale — if a renter buys your bag through Try Before You Buy, you receive 90% of the sale price.',
+        a: 'It depends on your track. Active members earn $60/month in credits while their bag is in the pool ($720/year if available all year). Non-members (consigners) earn $50/month cash while their bag is actively rented, prorated and paid directly to your bank via Stripe. You can also list for sale — if a renter buys your bag through Try Before You Buy, you receive 85% of the sale price.',
       },
       {
         q: 'Can I list my bag for sale?',
-        a: 'Yes! When you submit your bag, you can toggle "List for Sale" and set your asking price. Renters see the price while browsing and can purchase the bag during their rental through our Try Before You Buy program. You receive 90% of the sale price, and we handle the transaction.',
+        a: 'Yes! When you submit your bag, you can toggle "List for Sale" and set your asking price. Renters see the price while browsing and can purchase the bag during their rental through our Try Before You Buy program. You receive 85% of the sale price, and we handle the transaction.',
       },
       {
         q: 'How does Try Before You Buy work?',
-        a: 'Any bag listed for sale shows its price to renters. When a renter has the bag, they can choose to buy it instead of returning it. They pay the listed price, you receive 90%, and we keep a 10% commission. The renter keeps the bag — no return needed.',
+        a: 'Any bag listed for sale shows its price to renters. When a renter has the bag, they can choose to buy it instead of returning it. They pay the listed price, you receive 85%, and we keep a 15% commission. The renter keeps the bag — no return needed.',
       },
       {
         q: 'Is my bag insured while being rented?',

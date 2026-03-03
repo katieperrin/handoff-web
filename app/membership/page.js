@@ -114,7 +114,7 @@ const EARNING_EXPLAINED = [
   },
   {
     title: 'Try Before You Buy',
-    description: 'List your bag for sale with a transparent price. Renters can try it and purchase it outright. You receive 90% of the sale price — we take a 10% commission.',
+    description: 'List your bag for sale with a transparent price. Renters can try it and purchase it outright. You receive 85% of the sale price — we take a 15% commission.',
   },
   {
     title: 'Recall Anytime',
@@ -319,7 +319,7 @@ export default function MembershipPage() {
             <div className="bg-white/5 border border-white/10 rounded-2xl p-10 text-center">
               <p className="text-[#B0A8C8] text-sm mb-2">Non-member consigner:</p>
               <p className="text-xl font-bold text-white">
-                Earn <span className="text-green-400">$50/month cash</span> while rented + <span className="text-green-400">90% payout</span> on sales
+                Earn <span className="text-green-400">$50/month cash</span> while rented + <span className="text-green-400">85% payout</span> on sales
               </p>
             </div>
           </div>

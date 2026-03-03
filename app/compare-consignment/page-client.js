@@ -5,8 +5,8 @@ import Link from 'next/link';
 const CONSIGNMENT_COMPARISON = [
   {
     platform: 'The Handoffs',
-    commissionRate: '10%',
-    sellerPayout: '90%',
+    commissionRate: '15%',
+    sellerPayout: '85%',
     monthlyIncome: '$50/mo while rented',
     priceControl: 'Seller sets price',
     timeToFirstDollar: 'Within first month',
@@ -59,7 +59,7 @@ const COMPARISON_ASPECTS = [
     details: [
       {
         name: 'The Handoffs',
-        info: 'Just 10% commission when your bag sells. You keep 90% of the sale price. The lowest commission rate in luxury consignment.',
+        info: 'Just 15% commission when your bag sells. You keep 85% of the sale price. The lowest commission rate in luxury consignment.',
       },
       {
         name: 'The RealReal',
@@ -127,11 +127,11 @@ const COMPARISON_ASPECTS = [
 const FAQ_ITEMS = [
   {
     q: 'Why is The Handoffs commission so much lower?',
-    a: 'Because we earn revenue from rental memberships, not just sales commissions. Our business model doesn\'t depend on taking a huge cut from sellers. We only charge 10% on completed sales.',
+    a: 'Because we earn revenue from rental memberships, not just sales commissions. Our business model doesn\'t depend on taking a huge cut from sellers. We only charge 15% on completed sales.',
   },
   {
     q: 'Is The Handoffs really consignment?',
-    a: 'It\'s better than consignment. Traditional consignment means your bag sits in a warehouse earning nothing until it sells. With The Handoffs, your bag is actively rented, earning you $50/month cash while it waits for a buyer. When it sells, you keep 90%.',
+    a: 'It\'s better than consignment. Traditional consignment means your bag sits in a warehouse earning nothing until it sells. With The Handoffs, your bag is actively rented, earning you $50/month cash while it waits for a buyer. When it sells, you keep 85%.',
   },
   {
     q: 'How does rental income work for consigners?',
@@ -147,7 +147,7 @@ const FAQ_ITEMS = [
   },
   {
     q: 'How does this compare to selling on eBay or Poshmark?',
-    a: 'eBay charges ~13% in fees and Poshmark takes 20%. Neither pays you income while waiting for a buyer, and neither authenticates bags. The Handoffs charges 10%, pays rental income, and handles authentication, insurance, shipping, and returns.',
+    a: 'eBay charges ~13% in fees and Poshmark takes 20%. Neither pays you income while waiting for a buyer, and neither authenticates bags. The Handoffs charges 15%, pays rental income, and handles authentication, insurance, shipping, and returns.',
   },
 ];
 
@@ -176,7 +176,7 @@ function EarningsCalculator() {
   const [daysToSell, setDaysToSell] = useState(60);
 
   const handoffsRental = Math.round((daysToSell / 30) * 50);
-  const handoffsSale = Math.round(bagValue * 0.90);
+  const handoffsSale = Math.round(bagValue * 0.85);
   const handoffsTotal = handoffsRental + handoffsSale;
 
   const realrealTotal = Math.round(bagValue * 0.60);
@@ -232,7 +232,7 @@ function EarningsCalculator() {
           <p className="text-3xl font-bold text-white mb-3">${handoffsTotal.toLocaleString()}</p>
           <div className="space-y-1 text-xs text-[#B0A8C8]">
             <p>${handoffsRental} rental income ({daysToSell} days)</p>
-            <p>${handoffsSale.toLocaleString()} sale payout (90%)</p>
+            <p>${handoffsSale.toLocaleString()} sale payout (85%)</p>
           </div>
         </div>
         <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
@@ -402,10 +402,10 @@ export function CompareConsignmentContent() {
               Traditional consignment has a fundamental problem: your bag sits in a warehouse earning nothing until someone buys it. The RealReal averages 30-90+ days to sell a luxury bag. That's 1-3 months of zero income.
             </p>
             <p>
-              The Handoffs solves this. Your bag enters our rental pool immediately after authentication. Members rent it, carry it, and fall in love with it. You earn <strong>$50/month cash</strong> (prorated) while it's rented. When a renter decides to buy through Try Before You Buy, you receive <strong>90%</strong> of the sale price.
+              The Handoffs solves this. Your bag enters our rental pool immediately after authentication. Members rent it, carry it, and fall in love with it. You earn <strong>$50/month cash</strong> (prorated) while it's rented. When a renter decides to buy through Try Before You Buy, you receive <strong>85%</strong> of the sale price.
             </p>
             <p>
-              Even if your bag takes 90 days to sell, you've earned $150 in rental income on top of your 90% sale payout. At The RealReal, you'd have earned $0 in those same 90 days — and then lost 30-50% of the sale price to their commission.
+              Even if your bag takes 90 days to sell, you've earned $150 in rental income on top of your 85% sale payout. At The RealReal, you'd have earned $0 in those same 90 days — and then lost 30-50% of the sale price to their commission.
             </p>
           </div>
         </div>
@@ -430,7 +430,7 @@ export function CompareConsignmentContent() {
             Get More for Your Bag
           </h2>
           <p className="text-[#B0A8C8] mb-10 text-lg">
-            Earn rental income while your bag is listed and keep 90% when it sells.
+            Earn rental income while your bag is listed and keep 85% when it sells.
           </p>
           <Link
             href="/apply"

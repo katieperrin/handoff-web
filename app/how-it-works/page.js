@@ -78,8 +78,8 @@ const OWNER_STEPS = [
   {
     step: '06',
     title: 'Earn — Two Tracks',
-    description: 'Active members earn $60/month in credits while their bag is in the pool (applied to your membership). Non-members earn $50/month cash while their bag is actively rented, prorated and paid directly to your bank via Stripe. If a renter purchases your bag through Try Before You Buy, you receive 90% of the sale price.',
-    details: ['Members: $60/month credits while in pool ($720/year)', 'Consigners: $50/month cash while actively rented (prorated)', 'For-sale bags: 90% payout on purchase'],
+    description: 'Active members earn $60/month in credits while their bag is in the pool (applied to your membership). Non-members earn $50/month cash while their bag is actively rented, prorated and paid directly to your bank via Stripe. If a renter purchases your bag through Try Before You Buy, you receive 85% of the sale price.',
+    details: ['Members: $60/month credits while in pool ($720/year)', 'Consigners: $50/month cash while actively rented (prorated)', 'For-sale bags: 85% payout on purchase'],
   },
   {
     step: '07',

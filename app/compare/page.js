@@ -19,7 +19,7 @@ const TESTIMONIAL_COMPARISON = [
   },
   {
     aspect: 'As a Bag Owner',
-    handoffs: 'Monetize your luxury bag collection with credits or cash. List for sale and earn 90% when a renter purchases. No membership required to consign.',
+    handoffs: 'Monetize your luxury bag collection with credits or cash. List for sale and earn 85% when a renter purchases. No membership required to consign.',
     competitors: 'Cannot contribute or earn. Your bags stay inactive in your closet. Must go to a separate consignment site to sell.',
   },
   {

@@ -230,7 +230,7 @@ export default function HomePage() {
             {[
               { stat: '$60', label: 'credits/month while in pool' },
               { stat: '$50', label: 'cash/month while rented' },
-              { stat: '90%', label: 'payout on Try Before You Buy sales' },
+              { stat: '85%', label: 'payout on Try Before You Buy sales' },
               { stat: '100%', label: 'control — recall anytime' },
             ].map(({ stat, label }) => (
               <div key={label} className="bg-white rounded-2xl border border-gray-100 p-6 text-center">

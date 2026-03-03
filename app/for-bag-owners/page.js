@@ -1,10 +1,10 @@
 export const metadata = {
   title: 'Earn Money From Your Designer Bags | Rent, Sell, or Both — The Handoffs',
-  description: 'Three ways to earn from your luxury bags: $60/month credits (members), $50/month cash (consigners), or sell with 90% payout via Try Before You Buy. Free authentication, full insurance.',
+  description: 'Three ways to earn from your luxury bags: $60/month credits (members), $50/month cash (consigners), or sell with 85% payout via Try Before You Buy. Free authentication, full insurance.',
   keywords: 'earn money from designer bags, rent out luxury handbag, sell designer bag, luxury bag consignment, passive income designer bags, bag rental for owners, Try Before You Buy luxury bag',
   openGraph: {
     title: 'Earn Money From Your Designer Bags | The Handoffs',
-    description: 'Turn your closet into income. Earn monthly rental income, sell with 90% payout, or both. Free authentication & full insurance.',
+    description: 'Turn your closet into income. Earn monthly rental income, sell with 85% payout, or both. Free authentication & full insurance.',
     type: 'website',
   },
 };
@@ -14,11 +14,11 @@ import { BagOwnersPageContent } from './page-client';
 const FAQ_ITEMS = [
   {
     q: 'How much can I earn from my luxury bag?',
-    a: 'It depends on your track. Active members earn $60/month in credits while their bag is in the pool ($720/year if available all year). Non-members (consigners) earn $50/month cash while their bag is actively rented, prorated and paid directly to your bank account via Stripe. You can also list your bag for sale — if a renter buys it, you receive 90% of the sale price.',
+    a: 'It depends on your track. Active members earn $60/month in credits while their bag is in the pool ($720/year if available all year). Non-members (consigners) earn $50/month cash while their bag is actively rented, prorated and paid directly to your bank account via Stripe. You can also list your bag for sale — if a renter buys it, you receive 85% of the sale price.',
   },
   {
     q: 'How do earnings work?',
-    a: 'For members, credits accumulate monthly and apply directly to your membership fee. For consigners, cash payouts are transferred to your connected bank account after each rental completes. If your bag sells through Try Before You Buy, the payout (90% of sale price) is deposited within a few business days.',
+    a: 'For members, credits accumulate monthly and apply directly to your membership fee. For consigners, cash payouts are transferred to your connected bank account after each rental completes. If your bag sells through Try Before You Buy, the payout (85% of sale price) is deposited within a few business days.',
   },
   {
     q: 'Can I earn from multiple bags?',
@@ -46,15 +46,15 @@ const FAQ_ITEMS = [
   },
   {
     q: 'How does Try Before You Buy work?',
-    a: 'When a renter has your for-sale bag, they can choose to buy it instead of returning it. They pay the listed price, you receive 90%, and we keep a 10% commission. No return needed — the bag is theirs.',
+    a: 'When a renter has your for-sale bag, they can choose to buy it instead of returning it. They pay the listed price, you receive 85%, and we keep a 15% commission. No return needed — the bag is theirs.',
   },
   {
     q: 'Can I earn rental income AND list for sale at the same time?',
-    a: 'Absolutely. Your bag earns rental income (credits or cash) while it\'s in the pool. If a renter decides to buy it, the sale completes and you receive your 90% payout. You earn from both rentals and the eventual sale.',
+    a: 'Absolutely. Your bag earns rental income (credits or cash) while it\'s in the pool. If a renter decides to buy it, the sale completes and you receive your 85% payout. You earn from both rentals and the eventual sale.',
   },
   {
     q: 'How does this compare to The RealReal or Fashionphile?',
-    a: 'The RealReal takes 30-50% commission and you earn nothing while your bag waits to sell. Fashionphile offers ~60-70% buyout with no waiting income. The Handoffs charges only 10% commission, pays you rental income while waiting, and lets you set your own price. You keep 90% when it sells.',
+    a: 'The RealReal takes 30-50% commission and you earn nothing while your bag waits to sell. Fashionphile offers ~60-70% buyout with no waiting income. The Handoffs charges only 15% commission, pays you rental income while waiting, and lets you set your own price. You keep 85% when it sells.',
   },
   {
     q: 'How do I ship my bag to you?',
