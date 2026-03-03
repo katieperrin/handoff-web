@@ -13,8 +13,8 @@ export default function ApplyPage() {
   function set(field, value) {
     setForm((f) => {
       const updated = { ...f, [field]: value };
-      // Clear bag fields when switching away from 'both'
-      if (field === 'interest' && value !== 'both') {
+      // Clear bag fields when switching to rent-only
+      if (field === 'interest' && value !== 'both' && value !== 'contribute') {
         updated.bagBrand = '';
         updated.bagStyle = '';
         updated.bagCondition = '';
@@ -26,12 +26,12 @@ export default function ApplyPage() {
   async function handleSubmit(e) {
     e.preventDefault();
     if (!form.interest) { setError('Please select your interest.'); return; }
-    if (form.interest === 'both' && (!form.bagBrand || !form.bagStyle || !form.bagCondition)) {
+    if ((form.interest === 'both' || form.interest === 'contribute') && (!form.bagBrand || !form.bagStyle || !form.bagCondition)) {
       setError('Please fill in your bag details.'); return;
     }
     setError('');
     setSubmitting(true);
-    const isBoth = form.interest === 'both';
+    const hasBag = form.interest === 'both' || form.interest === 'contribute';
     const { error: dbError } = await supabase
       .from('pilot_applications')
       .insert({
@@ -39,9 +39,9 @@ export default function ApplyPage() {
         email: form.email.trim().toLowerCase(),
         interest: form.interest,
         note: form.note.trim() || null,
-        bag_brand: isBoth ? form.bagBrand : null,
-        bag_style: isBoth ? form.bagStyle.trim() : null,
-        bag_condition: isBoth ? form.bagCondition : null,
+        bag_brand: hasBag ? form.bagBrand : null,
+        bag_style: hasBag ? form.bagStyle.trim() : null,
+        bag_condition: hasBag ? form.bagCondition : null,
       });
     setSubmitting(false);
     if (dbError) {
@@ -121,6 +121,7 @@ export default function ApplyPage() {
                   {[
                     { value: 'renter', label: 'Renting bags', desc: 'Access the collection and carry luxury bags monthly' },
                     { value: 'both', label: 'Renting & contributing my bags', desc: 'Rent from the collection and earn credits by adding your bags to the pool' },
+                    { value: 'contribute', label: 'Contributing a bag', desc: 'Earn cash by adding your luxury bags to our rental pool — no membership required' },
                   ].map(({ value, label, desc }) => (
                     <label
                       key={value}
@@ -147,7 +148,7 @@ export default function ApplyPage() {
                 </div>
               </div>
 
-              {form.interest === 'both' && (
+              {(form.interest === 'both' || form.interest === 'contribute') && (
                 <div className="space-y-4 bg-purple-50 rounded-xl p-5 border border-purple-100">
                   <p className="text-sm font-semibold text-[#7B5EA7]">Tell us about a bag you'd contribute</p>
                   <div>
