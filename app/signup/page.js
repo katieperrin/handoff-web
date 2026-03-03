@@ -44,7 +44,7 @@ function SignupPageInner() {
     e.preventDefault();
     if (password !== confirm) { setError('Passwords do not match.'); return; }
     if (password.length < 6) { setError('Password must be at least 6 characters.'); return; }
-    if (!tosAccepted) { setError('Please accept the Terms of Service to continue.'); return; }
+    if (!tosAccepted) { setError('Please accept the Terms of Service and Privacy Policy to continue.'); return; }
     const formatted = formatPhone(phone);
     if (!formatted) { setError('Please enter a valid 10-digit US phone number.'); return; }
 
@@ -152,9 +152,22 @@ function SignupPageInner() {
                   />
                   <label htmlFor="tos" className="text-sm text-gray-500 cursor-pointer leading-snug">
                     I agree to the{' '}
-                    <Link href="/terms" className="text-[#7B5EA7] font-semibold hover:underline">
+                    <a
+                      href="https://docs.google.com/document/d/1PjY1AFoQrqgCYQQ46XRsRW2MsNndzSjFUGKWQ0FNHuE/edit?tab=t.0"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-[#7B5EA7] font-semibold hover:underline"
+                    >
                       Terms of Service
-                    </Link>
+                    </a>{' '}and{' '}
+                    <a
+                      href="https://docs.google.com/document/d/11ORha9OrZmdisI5Y3R3X2bf9C5WkgzpnXweMSr0qBMg/edit?tab=t.0"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-[#7B5EA7] font-semibold hover:underline"
+                    >
+                      Privacy Policy
+                    </a>
                   </label>
                 </div>
                 {error && <p className="text-sm text-red-500 bg-red-50 rounded-xl px-4 py-3">{error}</p>}

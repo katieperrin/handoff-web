@@ -42,6 +42,7 @@ export default function ContributePage() {
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState(null);
   const [success, setSuccess] = useState(false);
+  const [agreedToPolicy, setAgreedToPolicy] = useState(false);
 
   useEffect(() => {
     if (tab === 'submissions') fetchSubmissions();
@@ -133,6 +134,10 @@ export default function ContributePage() {
       setSubmitError('Please add a photo of your bag.');
       return;
     }
+    if (!agreedToPolicy) {
+      setSubmitError('Please review and agree to the Contribution Agreement.');
+      return;
+    }
     setSubmitting(true);
     setSubmitError(null);
 
@@ -176,6 +181,7 @@ export default function ContributePage() {
         setBrand(''); setModel(''); setColor(''); setCondition('excellent');
         setPhotoFile(null); setPhotoPreview(null);
         setFromName(''); setStreet(''); setCity(''); setState(''); setZip('');
+        setAgreedToPolicy(false);
         setTab('submissions');
         fetchSubmissions();
       }, 2200);
@@ -287,11 +293,48 @@ export default function ContributePage() {
             </div>
           </div>
 
+          <div className="flex items-start gap-3">
+            <input
+              type="checkbox"
+              id="contribution-agreement"
+              checked={agreedToPolicy}
+              onChange={(e) => setAgreedToPolicy(e.target.checked)}
+              className="mt-0.5 h-4 w-4 accent-[#7B5EA7] cursor-pointer shrink-0"
+            />
+            <label htmlFor="contribution-agreement" className="text-sm text-gray-500 cursor-pointer leading-snug">
+              I have reviewed and agree to the{' '}
+              <a
+                href="https://docs.google.com/document/d/1PjY1AFoQrqgCYQQ46XRsRW2MsNndzSjFUGKWQ0FNHuE/edit?tab=t.0"
+                target="_blank"
+                rel="noreferrer"
+                className="text-[#7B5EA7] font-semibold hover:underline"
+              >
+                Terms of Service
+              </a>,{' '}
+              <a
+                href="https://docs.google.com/document/d/1JHvOd1Llqiw-IAEtjtK0dkwfxRUrJ04D3mMiejK8XH8/edit?tab=t.0"
+                target="_blank"
+                rel="noreferrer"
+                className="text-[#7B5EA7] font-semibold hover:underline"
+              >
+                Contribution Agreement
+              </a>,{' '}and{' '}
+              <a
+                href="https://docs.google.com/document/d/11ORha9OrZmdisI5Y3R3X2bf9C5WkgzpnXweMSr0qBMg/edit?tab=t.0"
+                target="_blank"
+                rel="noreferrer"
+                className="text-[#7B5EA7] font-semibold hover:underline"
+              >
+                Privacy Policy
+              </a>
+            </label>
+          </div>
+
           {submitError && (
             <p className="text-sm text-red-500 bg-red-50 rounded-xl px-4 py-3">{submitError}</p>
           )}
 
-          <button type="submit" disabled={submitting}
+          <button type="submit" disabled={submitting || !agreedToPolicy}
             className="w-full bg-[#7B5EA7] hover:bg-[#6a4f93] disabled:opacity-60 text-white font-semibold py-3 rounded-xl transition-colors">
             {submitting ? 'Submitting…' : 'Submit Bag'}
           </button>

@@ -411,7 +411,7 @@ export default function ComparePage() {
             href="/apply"
             className="inline-block bg-[#7B5EA7] hover:bg-[#6a4f93] text-white font-semibold px-8 py-4 rounded-2xl transition-colors"
           >
-            Start Your Free Trial
+            Apply for Early Access
           </Link>
         </div>
       </section>

@@ -103,6 +103,7 @@ function SubscribePageInner() {
   });
   const [savingAddr, setSavingAddr] = useState(false);
   const [addrError, setAddrError] = useState(null);
+  const [agreedToDamagePolicy, setAgreedToDamagePolicy] = useState(false);
 
   // Pre-fill referral code from URL param or localStorage
   useEffect(() => {
@@ -152,6 +153,10 @@ function SubscribePageInner() {
     if (!addr.shipping_name || !addr.shipping_street1 || !addr.shipping_city ||
         !addr.shipping_state || !addr.shipping_zip) {
       setAddrError('Please fill in all required fields.');
+      return;
+    }
+    if (!agreedToDamagePolicy) {
+      setAddrError('Please review and agree to the Renter Damage Policy.');
       return;
     }
     setSavingAddr(true);
@@ -312,8 +317,36 @@ function SubscribePageInner() {
                     onChange={(e) => setAddr({ ...addr, shipping_phone: e.target.value })} />
                 </div>
               </div>
+              <div className="flex items-start gap-3">
+                <input
+                  type="checkbox"
+                  id="damage-policy"
+                  checked={agreedToDamagePolicy}
+                  onChange={(e) => setAgreedToDamagePolicy(e.target.checked)}
+                  className="mt-0.5 h-4 w-4 accent-[#7B5EA7] cursor-pointer shrink-0"
+                />
+                <label htmlFor="damage-policy" className="text-sm text-gray-500 cursor-pointer leading-snug">
+                  I have reviewed and agree to the{' '}
+                  <a
+                    href="https://docs.google.com/document/d/1PjY1AFoQrqgCYQQ46XRsRW2MsNndzSjFUGKWQ0FNHuE/edit?tab=t.0"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-[#7B5EA7] font-semibold hover:underline"
+                  >
+                    Terms of Service
+                  </a>{' '}and{' '}
+                  <a
+                    href="https://docs.google.com/document/d/1t7CXkj8zCg27xuc-RuhWPhnUuYUr86DK3kMzcdlSfQA/edit?tab=t.0"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-[#7B5EA7] font-semibold hover:underline"
+                  >
+                    Renter Damage Policy
+                  </a>
+                </label>
+              </div>
               {addrError && <p className="text-sm text-red-500 bg-red-50 rounded-xl px-4 py-3">{addrError}</p>}
-              <button type="submit" disabled={savingAddr}
+              <button type="submit" disabled={savingAddr || !agreedToDamagePolicy}
                 className="w-full bg-[#7B5EA7] hover:bg-[#6a4f93] disabled:opacity-60 text-white font-semibold py-3 rounded-xl transition-colors">
                 {savingAddr ? 'Saving…' : 'Continue to Payment'}
               </button>

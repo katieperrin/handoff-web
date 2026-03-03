@@ -89,14 +89,14 @@ export default function CollectionPage() {
             Join The Handoffs membership and gain instant access to our entire collection of authenticated designer handbags.
           </p>
           <Link
-            href="/auth/signup"
+            href="/apply"
             className="inline-block px-8 py-3 rounded font-semibold transition-all"
             style={{
               backgroundColor: 'white',
               color: '#7B5EA7'
             }}
           >
-            Start Your Free Trial
+            Apply for Early Access
           </Link>
         </div>
       </section>
