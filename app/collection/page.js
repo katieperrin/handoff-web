@@ -29,6 +29,9 @@ export default function CollectionPage() {
 
       {/* Hero Section */}
       <section className="px-6 py-16 sm:py-24 max-w-6xl mx-auto">
+        <span className="inline-block text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-6" style={{ backgroundColor: '#7B5EA7', color: 'white' }}>
+          Coming Soon
+        </span>
         <h1 className="text-4xl sm:text-5xl font-bold mb-6" style={{ color: '#2D2040' }}>
           Rent Authenticated Luxury Handbags
         </h1>

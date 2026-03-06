@@ -17,6 +17,12 @@ const POSTS = [
     date: 'February 2026',
     excerpt: "We've spent months building something we believe in. Now we need to know if it works in the real world. We're hand-selecting 10 people to be our first members.",
   },
+  {
+    slug: 'before-you-consign',
+    title: 'Before You Consign That Bag, Consider This',
+    date: 'March 2026',
+    excerpt: "Your luxury handbag is worth more than a one-time payout. Here's why renting it out earns you more — with less risk — than selling it on consignment.",
+  },
 ];
 
 export default function BlogPage() {

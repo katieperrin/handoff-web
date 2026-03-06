@@ -1,48 +1,8 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { createClient } from '@supabase/supabase-js';
-
-// Initialize Supabase client
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-);
 
 export default function BrandPageClient({ brand, allBrands, params }) {
-  const [bags, setBags] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    async function fetchBags() {
-      try {
-        setLoading(true);
-        const { data, error: fetchError } = await supabase
-          .from('bags')
-          .select('*')
-          .ilike('brand', brand.name)
-          .in('status', ['available', 'rented']);
-
-        if (fetchError) {
-          setError(fetchError.message);
-          setBags([]);
-        } else {
-          setBags(data || []);
-        }
-      } catch (err) {
-        setError(err.message);
-        setBags([]);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    if (brand) {
-      fetchBags();
-    }
-  }, [brand]);
 
   if (!brand) {
     return (
@@ -105,6 +65,9 @@ export default function BrandPageClient({ brand, allBrands, params }) {
 
       {/* Hero Section */}
       <section className="px-6 py-12 sm:py-16 max-w-6xl mx-auto">
+        <span className="inline-block text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-6" style={{ backgroundColor: '#7B5EA7', color: 'white' }}>
+          Coming Soon
+        </span>
         <h1 className="text-4xl sm:text-5xl font-bold mb-8" style={{ color: '#2D2040' }}>
           Rent {brand.name} Handbags
         </h1>
@@ -117,91 +80,26 @@ export default function BrandPageClient({ brand, allBrands, params }) {
         </div>
       </section>
 
-      {/* Bags Section */}
+      {/* Coming Soon Section */}
       <section className="px-6 py-12 max-w-6xl mx-auto">
-        <h2 className="text-2xl font-bold mb-8" style={{ color: '#2D2040' }}>
-          Available {brand.name} Bags
-        </h2>
-
-        {loading && (
-          <div className="text-center py-12">
-            <p style={{ color: '#6B5D7A' }}>Loading bags...</p>
-          </div>
-        )}
-
-        {error && (
-          <div className="text-center py-12">
-            <p style={{ color: '#E74C3C' }}>Error loading bags: {error}</p>
-          </div>
-        )}
-
-        {!loading && !error && bags.length === 0 ? (
-          // Coming Soon Section
-          <div
-            className="p-12 rounded-lg text-center"
-            style={{ backgroundColor: 'white', border: '1px solid #E8E4F0' }}
+        <div
+          className="p-12 rounded-lg text-center"
+          style={{ backgroundColor: 'white', border: '1px solid #E8E4F0' }}
+        >
+          <h2 className="text-2xl font-bold mb-4" style={{ color: '#2D2040' }}>
+            Coming Soon
+          </h2>
+          <p className="text-lg mb-8" style={{ color: '#6B5D7A' }}>
+            We're currently curating our {brand.name} collection. Apply for early access to be the first to know when bags are available.
+          </p>
+          <Link
+            href="/apply"
+            className="inline-block px-8 py-3 rounded font-semibold transition-all"
+            style={{ backgroundColor: '#7B5EA7', color: 'white' }}
           >
-            <h3 className="text-2xl font-bold mb-4" style={{ color: '#2D2040' }}>
-              Coming Soon
-            </h3>
-            <p className="text-lg mb-8" style={{ color: '#6B5D7A' }}>
-              We're currently curating our {brand.name} collection. Be the first to know when new bags are available.
-            </p>
-            <form className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="Your email address"
-                className="flex-1 px-4 py-3 rounded border"
-                style={{ borderColor: '#E8E4F0', color: '#2D2040' }}
-              />
-              <button
-                type="submit"
-                className="px-6 py-3 rounded font-semibold transition-all"
-                style={{ backgroundColor: '#7B5EA7', color: 'white' }}
-              >
-                Notify Me
-              </button>
-            </form>
-          </div>
-        ) : !loading && !error && bags.length > 0 ? (
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
-            {bags.map((bag) => (
-              <div
-                key={bag.id}
-                className="rounded-lg overflow-hidden transition-all hover:shadow-lg"
-                style={{ backgroundColor: 'white', border: '1px solid #E8E4F0' }}
-              >
-                {bag.photo_url && (
-                  <div className="relative w-full h-48 bg-gray-200 overflow-hidden">
-                    <img
-                      src={bag.photo_url}
-                      alt={bag.model}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                )}
-                <div className="p-4">
-                  <h3 className="font-semibold mb-2" style={{ color: '#2D2040' }}>
-                    {bag.model}
-                  </h3>
-                  <div className="text-sm space-y-1" style={{ color: '#6B5D7A' }}>
-                    <p>Condition: {bag.condition}</p>
-                    <p>
-                      Status:{' '}
-                      <span
-                        style={{
-                          color: bag.status === 'available' ? '#27AE60' : '#E74C3C'
-                        }}
-                      >
-                        {bag.status === 'available' ? 'Available' : 'Rented'}
-                      </span>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        ) : null}
+            Apply for Early Access
+          </Link>
+        </div>
       </section>
 
       {/* Related Brands Section */}

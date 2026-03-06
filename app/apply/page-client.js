@@ -85,8 +85,11 @@ export default function ApplyPage() {
             <div className="mb-10">
               <p className="text-xs font-semibold text-[#7B5EA7] uppercase tracking-widest mb-2">Pilot Program</p>
               <h1 className="text-4xl font-bold text-[#2D2040] mb-4">Apply for Early Access</h1>
-              <p className="text-gray-500 leading-relaxed">
+              <p className="text-gray-500 leading-relaxed mb-3">
                 We're opening The Handoffs to a small first cohort. Tell us a bit about yourself and we'll be in touch if you're a fit.
+              </p>
+              <p className="text-sm font-semibold text-[#7B5EA7]">
+                Lock in lifetime special pricing by joining early.
               </p>
             </div>
 
