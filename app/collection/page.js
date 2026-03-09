@@ -32,22 +32,12 @@ export default function CollectionPage() {
         <span className="inline-block text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-6" style={{ backgroundColor: '#7B5EA7', color: 'white' }}>
           Coming Soon
         </span>
-        <h1 className="text-4xl sm:text-5xl font-bold mb-6" style={{ color: '#2D2040' }}>
+        <h1 className="text-4xl sm:text-5xl font-bold mb-4" style={{ color: '#2D2040' }}>
           Rent Authenticated Luxury Handbags
         </h1>
-
-        {/* Intro Paragraph */}
-        <div className="prose prose-lg max-w-none mb-12" style={{ color: '#4A3F5C' }}>
-          <p className="text-lg leading-relaxed mb-6">
-            Experience the luxury bag rental service designed for those who appreciate fine craftsmanship without the permanent price tag. The Handoffs curates an exclusive collection of authenticated designer bags from the world's most prestigious luxury houses. Our designer bag subscription offers unlimited access to seasonal styles, limited editions, and investment pieces from Chanel, Hermès, Louis Vuitton, Dior, and more.
-          </p>
-          <p className="text-lg leading-relaxed mb-6">
-            Every bag in our luxury bag rental collection is meticulously authenticated and maintained to the highest standards. Whether you're seeking the iconic Hermès Birkin for a special occasion, the timeless Louis Vuitton Neverfull for everyday sophistication, or seasonal pieces to elevate your wardrobe, our designer handbag rental service provides access without compromise. Renting luxury bags allows you to invest in experiences rather than storage, rotate styles with your mood and season, and test designs before committing to purchase.
-          </p>
-          <p className="text-lg leading-relaxed">
-            We believe that luxury should be accessible and sustainable. Through our authenticated luxury bag rental model, you gain the freedom to explore the full spectrum of designer handbags—from emerging collections to heritage classics. Our members enjoy the prestige of carrying authentic designer bags, the flexibility to change styles as often as they like, and the peace of mind knowing that every bag in our collection has been expertly authenticated and professionally maintained. Join The Handoffs and discover a new way to experience luxury.
-          </p>
-        </div>
+        <p className="text-lg" style={{ color: '#6B5D7A' }}>
+          Authenticated bags from Chanel, Hermès, Louis Vuitton, and more. Browse what's coming to the collection.
+        </p>
       </section>
 
       {/* Brands Grid */}

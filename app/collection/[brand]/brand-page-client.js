@@ -68,16 +68,12 @@ export default function BrandPageClient({ brand, allBrands, params }) {
         <span className="inline-block text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-6" style={{ backgroundColor: '#7B5EA7', color: 'white' }}>
           Coming Soon
         </span>
-        <h1 className="text-4xl sm:text-5xl font-bold mb-8" style={{ color: '#2D2040' }}>
+        <h1 className="text-4xl sm:text-5xl font-bold mb-4" style={{ color: '#2D2040' }}>
           Rent {brand.name} Handbags
         </h1>
-
-        {/* Brand Description */}
-        <div className="prose prose-lg max-w-3xl" style={{ color: '#4A3F5C' }}>
-          <p className="text-base leading-relaxed whitespace-pre-wrap mb-6">
-            {brand.longDescription}
-          </p>
-        </div>
+        <p className="text-lg" style={{ color: '#6B5D7A' }}>
+          {brand.shortDescription}
+        </p>
       </section>
 
       {/* Coming Soon Section */}
